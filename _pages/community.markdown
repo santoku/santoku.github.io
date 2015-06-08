@@ -25,7 +25,7 @@ permalink: /community/
       <p><a href="https://groups.google.com/forum/#!forum/santoku">https://groups.google.com/forum/#!forum/santoku</a></p>
       
       <h4>IRC Channel</h4>
-      <p>irc.freenode.net#santoku-linux</p>
+      <p>irc.freenode.net#santoku</p>
 
       <h4>Forums</h4>
       <p>The forums no longer exist. For community support please use the Google Group email list or visit the IRC channel</p>
