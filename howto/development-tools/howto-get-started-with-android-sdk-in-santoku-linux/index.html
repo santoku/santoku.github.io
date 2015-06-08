@@ -1,0 +1,83 @@
+---
+layout: page
+status: publish
+published: true
+title: HOWTO get started with Android SDK in Santoku Linux
+permalink: /howto/development-tools/howto-get-started-with-android-sdk-in-santoku-linux/
+---
+
+<div class="main-area">
+
+  <div class="tools">
+    <div class="holder">
+      <div class="frame">
+        <h1>How Tos</h1>
+        <p class="breadcrumb"><a href="/">Home</a><a href="/howtos/">How Tos</a><span class='current_crumb'>HOWTO get started with Android SDK in Santoku Linux</span></p>
+      </div> 
+    </div> 
+  </div> 
+
+
+<div class="main-holder">
+<div id="content" class="content_blog">
+<div class="single_blog_wrap">
+<div class="post_title">
+<h2>HOWTO get started with Android SDK in Santoku Linux</h2>
+</div> 
+
+<p><a name="top"></a><br/>
+This HOWTO will guide you through the process of getting started with the Android Software Development Kit and emulator. The emulator can be a valuable tool for an analyst, as it allows full access to the file system, hardware configurations, operating characteristics, and more of each version of Android operating systems.</p>
+<p><em>Note: The emulator in the Android SDK requires a large amount of resources, therefore we recommend providing your virtual machine with as much memory and as many processors as possible.</em></p>
+<h3><a name="toc"></a>Contents</h3>
+<ul>
+<li><a href="#what-you-will-need">What you will need</a></li>
+<li><a href="#getting-started-sdk">Getting started with the SDK Manager</a></li>
+<li><a href="#build-avd">Build an Android Virtual Device (AVD)</a></li>
+<li><a href="#install-apk-emulator">Install an .apk to your emulator</a></li>
+<li><a href="#revision-history">Revision History</a></li>
+</ul>
+<h4><a name="what-you-will-need"></a>What you will need:</h4>
+<ul>
+<li>Santoku Linux Alpha 0.1 (or later)</li>
+<li>Android SDK Manager (already bundled with Santoku Linux)</li>
+<li>An .apk to install to your AVD</li>
+</ul>
+<h4><a name="getting-started-sdk-install"></a>Getting started with the SDK Manager:</h4>
+<p>Navigate to your Android SDK Manager: Santoku &#8211;&gt; Development Tools &#8211;&gt; SDK Manager</p>
+<p>Check the box next to whichever Android version(s) you would like to install and select &#8220;Install packages&#8221; (in this example we selected 2.3.3, API 10). We also recommend installing everything underneath the &#8220;Tools&#8221; package. Select &#8220;Install packages&#8221; on this screen, then &#8220;Accept all&#8221; on the next screen to install.</p>
+<p><a href="howto-get-started-with-android-sdk-in-santoku-linux/attachment/select-api.html" rel="attachment wp-att-1417"><img class="alignnone size-full wp-image-1417" title="Select API" src="/wp-content/uploads/Select-API.png" alt="Select API - Android SDK" width="550"/></a><br/>
+</br><a href="#top">Top</a></p>
+<h4><a name="build-avd"></a>Build an Android Virtual Device:</h4>
+<p>Select Tools &#8211;&gt; Manage AVDs. Click &#8220;New&#8221;. Enter a name for your AVD. The &#8220;Target&#8221; drop down allows you to choose the OS of your new AVD. If desired, enter the size of your SD Card. You can add expanded hardware capabilities besides what you see in the &#8220;Hardware:&#8221; section by selecting &#8220;New&#8221; and choose the hardware attributes of your choice. This is especially beneficial when testing specific attributes of an application.</p>
+<p><a href="howto-get-started-with-android-sdk-in-santoku-linux/attachment/create_edit_avd.html" rel="attachment wp-att-1422"><img class="alignnone size-full wp-image-1422" title="Create_Edit_AVD" src="/wp-content/uploads/Create_Edit_AVD.png" alt="Edit AVD" width="400"/></a></p>
+<p>When done, click &#8220;Create AVD&#8221;.</p>
+<p><em>Note: If you ever want to change these settings, click &#8220;Edit&#8221; in the AVD Manager main window and it will return you to this screen.</em></p>
+<p>Once your AVD is ready to go, click &#8220;Start&#8221;. Select applicable options on the next screen and choose &#8220;Launch&#8221;.</p>
+<p><a href="howto-get-started-with-android-sdk-in-santoku-linux/attachment/startavd.html" rel="attachment wp-att-1418"><img class="alignnone size-full wp-image-1418" title="StartAVD" src="/wp-content/uploads/StartAVD.png" alt="Start AVD" width="550"/></a><br/>
+</br><a href="#top">Top</a></p>
+<h4><a name="install-apk-emulator"></a>Install an .apk to your emulator:</h4>
+<p>The emulator should launch and immediately connect to your Santoku machine. To test, open a terminal and enter:</p>
+<pre>sudo adb devices</pre>
+<p></br><br/>
+Which should output something similar to:</p>
+<pre>List of devices attached
+emulator-5554    devices</pre>
+<p></br><br/>
+If you don&#8217;t see this, or it says offline instead of devices, wait 60 seconds and attempt sudo adb devices again.</p>
+<p><a href="howto-get-started-with-android-sdk-in-santoku-linux/attachment/screenshot-at-2012-08-28-163044-2.html" rel="attachment wp-att-1427"><img title="Screenshot at 2012-08-28 16:30:44" src="/wp-content/uploads/Screenshot-at-2012-08-28-1630441.png" alt="" width="450" height="402"/></a></p>
+<p>Use adb to install your .apk to your emulator.</p>
+<pre>adb install ~/Desktop/AFLogical-OSE_1.5.2.apk 
+719 KB/s (28794 bytes in 0.039s)
+	pkg: /data/local/tmp/AFLogical-OSE_1.5.2.apk
+Success</pre>
+<p></br><br/>
+The .apk installed in this example is the AFLogical-OSE .apk. If you&#8217;d like to follow along, you can <a title="AFLogical OSE" href="https://github.com/viaforensics/android-forensics/downloads" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://github.com/viaforensics/android-forensics/downloads']);" target="_blank"> download the .apk</a> from its GitHub account, or you can <a title="AFLogical OSE" href="https://github.com/viaforensics/android-forensics" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://github.com/viaforensics/android-forensics']);" target="_blank">download the source code</a> from the GitHub account and <a title="HOWTO compile AFLogical OSE " href="howto-compile-aflogical-ose-on-santoku-linux.html" target="_blank">compile it</a> to retrieve the .apk. From there, follow our HOWTO forensically examine an Android device with AFLogical OSE on Santoku Linux to do a physical data analysis of your newly created emulator.</p>
+<p>This is just the tip of the iceberg with the Android emulator and SDK. Please comment here or in <a title="The Forums" href="/forums.html" target="_blank">the forums</a> on what you have done with these powerful programs and share your experiences with <a title="The Community" href="/community.html" target="_blank">the Community</a>.<br/>
+</br><br/>
+<a href="#top">Top</a></p>
+
+      </div> 
+    </div> 
+  </div> 
+
+</div> 

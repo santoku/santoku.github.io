@@ -1,0 +1,96 @@
+---
+layout: page
+status: publish
+published: true
+title: "HOWTO: Use AFLogical OSE for Logical Forensics of an Android Device"
+permalink: /howto/howto-use-aflogical-ose-logical-forensics-android/
+---
+
+<div class="main-area">
+
+  <div class="tools">
+    <div class="holder">
+      <div class="frame">
+        <h1>How Tos</h1>
+        <p class="breadcrumb"><a href="/">Home</a><a href="/howtos/">How Tos</a><span class='current_crumb'>HOWTO: Use AFLogical OSE for Logical Forensics of an Android Device</span></p>
+      </div> 
+    </div> 
+  </div> 
+
+
+<div class="main-holder">
+<div id="content" class="content_blog">
+<div class="single_blog_wrap">
+<div class="post_title">
+<h2>HOWTO: Use AFLogical OSE for Logical Forensics of an Android Device</h2>
+</div> 
+
+<p><a name="top"></a><br/>
+This HOWTO will walk you through the use of AFLogical OSE to extract data from an Android mobile device.</p>
+<p><em>Note: The Open Source Edition has been released for use by non-law enforcement personnel, Android aficionados, and forensics gurus alike. It allows an examiner to extract CallLog Calls, Contacts Phones, MMS messages, MMSParts, and SMS messages from Android devices. The full AFLogical software is available free for Law Enforcement personnel. More information is available at <a href="https://viaforensics.com/products/android-forensics-tool/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://viaforensics.com/products/android-forensics-tool/']);" title="viaForensics.com - AFLogical" target="_blank">https://viaforensics.com/products/android-forensics-tool/</a>.</em></p>
+<h3><a name="toc"></a>Contents</h3>
+<ul>
+<li><a href="#what-you-will-need">What you will need</a></li>
+<li><a href="#getting-started-aflogical">Getting started with AFLogical OSE</a></li>
+<li><a href="#extract-data">Extract Data</a></li>
+<li><a href="#revision-history">Revision History</a></li>
+</ul>
+<h4><a name="what-you-will-need"></a>What you will need:</h4>
+<ul>
+<li>Santoku Linux Alpha 0.1 (or later)</li>
+<li>AFLogical OSE (already bundled with Santoku Linux)</li>
+<li>An Android mobile device with USB debugging on</li>
+</ul>
+<p><a href="#top">Top</a></p>
+<h4><a name="getting-started-aflogical"></a>Getting started with AFLogical OSE</h4>
+<p>Make sure your device is connected to your machine. If you&#8217;re using Santoku in VirtualBox, go to Devices &#8211;> USB Devices. Make sure there&#8217;s a checkmark next to your device.</p>
+<p><img src="/wp-content/uploads/connect_device.png" alt="" title="connect_device" width="517" class="alignnone size-full wp-image-1529"/></p>
+<p>If in VMWare Player, go to VM &#8211;> Removable Devices &#8211;> <your_device_name> and click &#8220;Connect&#8221;.</p>
+<p>Enable USB debugging on your device. For Android 3.x and below, go to Settings &#8211;> Applications &#8211;> Development, then check &#8216;USB debugging&#8217;.<br/>
+On Android 4.x and above go to Settings &#8211;> Developer Options, then check &#8216;USB debugging&#8217;.</p>
+<p><img src="/wp-content/uploads/USB_Debugging.png" alt="" title="USB_Debugging" width="240" class="alignnone size-full wp-image-1543"/></p>
+<p>In Santoku, open AFLogicalOSE: Santoku &#8211;&gt; Device Tools &#8211;&gt; SDK Manager.</p>
+<p><img src="/wp-content/uploads/Open.png" alt="" title="Open" width="513" class="alignnone size-full wp-image-1545"/></p>
+<p><a href="#top">Top</a></p>
+<h4><a name="extract-data"></a>Extract Data from your Device:</h4>
+<p>Push the AFLogical-OSE_1.5.2.apk to your device.</p>
+<pre>$ ls -l
+total 72
+-rw-r--r-- 1 santoku-user santoku-user 28794 Dec 19  2011 AFLogical-OSE_1.5.2.apk
+-rw-r--r-- 1 santoku-user santoku-user 35819 Dec 19  2011 GPL
+-rw-r--r-- 1 santoku-user santoku-user  1236 Dec 19  2011 README.txt
+
+$ sudo adb devices
+[sudo] password for santoku-user: 
+* daemon not running. starting it now on port 5037 *
+* daemon started successfully *
+List of devices attached 
+aDf1357867	device
+
+$ adb install AFLogical-OSE_1.5.2.apk 
+296 KB/s (28794 bytes in 0.094s)
+	pkg: /data/local/tmp/AFLogical-OSE_1.5.2.apk
+Success</pre>
+<p><br \><br />
+On your Android device, open the AFLogical OSE application, choose what data you want to extract, and follow the prompts to extract the data.<br />
+<em>Note: You must have an SD card installed on your device (or a built in SD card) to extract the data.</em></p>
+<p><img src="/wp-content/uploads/AFLogical_On_Device-180x300.png" alt="" title="AFLogical_On_Device" width="180" class="alignnone size-medium wp-image-1527" />
+  <img src="/wp-content/uploads/Select_Data_to_Extract_AFLogicalOSE-180x300.png" alt="" title="Select_Data_to_Extract_AFLogicalOSE" width="180" class="alignnone size-medium wp-image-1531" /> <img src="/wp-content/uploads/Capture_Complete-180x300.png" alt="" title="Capture_Complete" width="180" class="alignnone size-medium wp-image-1528" /></p>
+<p>Next, pull the data from your SD card to your Santoku machine.</p>
+<pre>$ mkdir ~/Desktop/AFLogical_Phone_Data
+
+$ adb pull /sdcard/forensics/ ~/Desktop/AFLogical_Phone_Data
+pull: building file list...
+pull: /sdcard/forensics/20120720.1833/Contacts Phones.csv -> /home/santoku-user/Desktop/AFLogical_Phone_Data/20120720.1833/Contacts Phones.csv
+...< snip >...
+40 files pulled. 0 files skipped.
+410 KB/s (3880025 bytes in 9.229s)</pre>
+<p><br \><br />
+Your extracted data is in your ~/Desktop/AFLogical_Phone_Data directory.</p>
+<p><a href="#top">Top</a></p>
+
+      </div> 
+    </div> 
+  </div> 
+
+</div> 

@@ -1,0 +1,16 @@
+# Site settings
+name: Santoku Linux
+title: Santoku Linux
+email: info@santoku-linux.com
+baseurl: '/'
+markdown: kramdown
+kramdown:
+  input: GFM
+relative_permalinks: false
+
+# Other Random Settings
+exclude: ['_posts', '_blog', 'README.md', 'Gemfile', 'Gemfile.lock', 'bin', 'Dockerfile', '_docker', '_resources', '_config.yml', '_config.live.yml', '_config.staging.yml', '.gitignore', 'Gruntfile.js', 'node_modules', 'Vagrantfile', 'README.blog.md', 'README.pages.md', 'README.troubleshoot.md', 'README.install.md', 's3_website.live.yml', 's3_website.staging.yml', 's3_website.yml', 'redirects.txt', '.env', '.gitignore']
+include: ['_pages']
+
+# Google Analytics Info
+google_analytics_tracking_id: 

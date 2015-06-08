@@ -1,0 +1,104 @@
+---
+layout: page
+status: publish
+published: true
+title: HOWTO compile AFLogical OSE on Santoku Linux 
+permalink: /howto/mobile-forensics/howto-use-iphone-backup-analyzer-on-santoku-linux/
+---
+
+<div class="main-area">
+
+  <div class="tools">
+    <div class="holder">
+      <div class="frame">
+        <h1>How Tos</h1>
+        <p class="breadcrumb"><a href="/">Home</a><a href="/howtos/">How Tos</a><span class='current_crumb'>HOWTO compile AFLogical OSE on Santoku Linux </span></p>
+      </div> 
+    </div> 
+  </div> 
+
+  <div class="main-holder">
+    <div id="content" class="content_blog">
+      <div class="single_blog_wrap">
+        <div class="post_title">
+          <h2>HOWTO compile AFLogical OSE on Santoku Linux</h2>
+          <p class="posted-by-text"><span>Posted by:</span> <a href="../../author/ahoog.html" title="Posts by ahoog" rel="author">ahoog</a></p>
+        </div> 
+
+        <p><a name="top"></a>This HOWTO will guide you through the process of compiling AFLogical OSE from source on Santoku Linux CE.</p>
+        
+        <h3><a name="toc"></a>Contents</h3>
+        <ul>
+          <li><a href="#need">What you will need</a></li>
+          <li><a href="#aflogical-ose">AFLogical OSE background</a></li>
+          <li><a href="#build-requirements">Required build software</a></li>
+          <li><a href="#compile-AFLogical-OSE">Compiling AFLogical OSE</a></li>
+          <li><a href="#revision-history">Revision history</a></li>
+        </ul>
+
+        <h4><a name="need"></a>What you will need:</h4>
+        <ul>
+          <li>Santoku &#8211; Alpha 0.2 (or later)</li>
+        </ul>
+
+        <h4><a name="aflogical-ose"></a>AFLogical OSE Background</h4>
+        <p>AFLogical OSE was <a href="https://viaforensics.com/android-forensics/aflogical-open-source-edition-free-android-forensics-tooldownload.html" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://viaforensics.com/android-forensics/aflogical-open-source-edition-free-android-forensics-tooldownload.html']);" target="_new">released in December 2011</a> and is now hosted on <a href="https://github.com/viaforensics/android-forensics" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://github.com/viaforensics/android-forensics']);" target="_new">GitHub</a>. The app provides a basic framework for extracting data from Android devices using Content Providers and then saves the data to the SD Card of the device including:</p>
+        <ul>
+        <li>Contacts</li>
+        <li>Call Logs</li>
+        <li>SMS</li>
+        <li>MMS</li>
+        <li>MMS Parts</li>
+        <li>Device info</li>
+        </ul>
+        <p>AFLogical OSE has been successfully tested on Android 1.5 through 4.1 (Jelly Bean) and across many non-standard Android devices.</p>
+        <h4><a name="build-requirements"></a>Required build software</h4>
+        <p>Since the goal of Santoku Linux is to provide mobile security, forensic and malware tools pre-installed, there are are few additional software development packages which need to be installed.</p>
+        <p><strong>Some debs</strong></p>
+        <pre>sudo apt-get update
+        sudo apt-get install ant git</pre>
+        <p>&nbsp;</p>
+        <p><strong>Oracle JDK on Ubuntu 12.04</strong><br/>
+        For compatibility, we use the Oracle JDK instead of Open JDK (ymmv). First, you need to download the latest JDK from Oracle (<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7u7-downloads-1836413.html" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.oracle.com/technetwork/java/javase/downloads/jdk7u7-downloads-1836413.html']);" target="_new">7u7</a> as of today). Make sure you download the tar.gz file (jdk-7u7-linux-i586.tar.gz). Assuming this was saved to your Downloads directory, start a Terminal (Accessories &gt; LXTerminal or on bottom panel) and run the following:</p>
+        <pre>cd ~/Downloads
+        tar xzvf jdk-7u7-linux-i586.tar.gz 
+        export JAVA_HOME=/home/santoku/Downloads/jdk1.7.0_07</pre>
+        <p>&nbsp;</p>
+        <p>Next we need to fetch the <a href="http://source.android.com/source/build-numbers.html" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://source.android.com/source/build-numbers.html']);" target="_new">Android API level</a> we want to target:</p>
+        <pre>android</pre>
+        <p>&nbsp;</p>
+        <p>From the Android SDK manager, select your desired version. For this example, we chose Android 2.1 (API 7):</p>
+        <p><a href="/howto/development-tools/howto-compile-aflogical-ose-on-santoku-linux/attachment/android-sdk-manager.html" rel="attachment wp-att-1195"><img class="alignnone size-full wp-image-1195" title="android-sdk-manager" src="/wp-content/uploads/android-sdk-manager.png" alt="SDK Manager" width="550"/></a></p>
+        <p>Make sure you install the API and accept the license agreement.</p>
+        <h4><a name="compile-AFLogical-OSE"></a>Compiling AFLogical OSE</h4>
+        <p>We&#8217;re finally ready to compile AFLogical OSE. First, we need to fetch the code from GitHub. Let&#8217;s reuse the open Terminal window (or start a new one) and type the following:</p>
+        <pre>mkdir ~/projects
+        cd ~/projects
+        git clone https://github.com/viaforensics/android-forensics.git</pre>
+        <p>&nbsp;</p>
+        <p>Next, we&#8217;ll setup the Android project. If you downloaded a different API level, change accordingly:</p>
+        <pre>android update project --name AFLogical-OSE --target android-7 --path ~/projects/android-forensics</pre>
+        <p>&nbsp;</p>
+        <p>And finally we can compile the .apk with ant. In our example, we compile in debug mode:</p>
+        <pre>cd ~/projects/android-forensics
+        ant debug</pre>
+        <p>&nbsp;</p>
+        <p>Note: you can also do &#8220;ant release&#8221; to build a released, non-debug version.</p>
+        <p>It should not take long and you should see &#8220;BUILD SUCCESSFUL&#8221; at the end:</p>
+        <pre>santoku@santoku-vm:~/android-forensics$ ant debug
+        Buildfile: /home/santoku/android-forensics/build.xml
+        
+        -check-env:
+         [checkenv] Android SDK Tools Revision 20.0.3
+         [checkenv] Installed at /opt/santoku/android-sdk-linux
+        
+        BUILD SUCCESSFUL
+        Total time: 5 seconds</pre>
+        <p>&nbsp;</p>
+        <p>The debug .apk will be in the bin folder (AFLogical-OSE-debug.apk). You can now <a href="/howto/mobile-forensics/howto-forensically-examine-android-aflogical-santoku/">image your Android device</a>&#8230;w00t!</p>
+
+      </div> 
+    </div> 
+  </div> 
+
+</div> 

@@ -1,0 +1,103 @@
+---
+layout: page
+status: publish
+published: true
+title: HOWTO run Heimdall on Samsung devices in Santoku Linux
+permalink: /howto/development-tools/howto-run-heimdall-samsung-devices-santoku-linux/
+---
+
+<div class="main-area">
+
+  <div class="tools">
+    <div class="holder">
+      <div class="frame">
+        <h1>How Tos</h1>
+        <p class="breadcrumb"><a href="/">Home</a><a href="/howtos/">How Tos</a><span class='current_crumb'>HOWTO run Heimdall on Samsung devices in Santoku Linux</span></p>
+      </div> 
+    </div> 
+  </div> 
+
+
+<div class="main-holder">
+<div id="content" class="content_blog">
+<div class="single_blog_wrap">
+<div class="post_title">
+<h2>HOWTO run Heimdall on Samsung devices in Santoku Linux</h2>
+</div> 
+
+<p><a name="top"></a><br/>
+This HOWTO will guide you through the process of using Heimdall on a Samsung Android device.</p>
+<p><em>USE AT YOUR OWN RISK. This information is provided for reference only and on an &#8220;as is&#8221; basis without any warranty whatsoever. Heimdall is a permanent flashing utility and should be used with caution.<br/>
+</em></p>
+<h3><a name="toc"></a>Contents</h3>
+<ul>
+<li><a href="#need">What you will need</a></li>
+<li><a href="#about-heimdall">About Heimdall</a></li>
+<li><a href="#known-supported-devices">Known supported devices</a></li>
+<li><a href="#run-heimdall">Run the Heimdall GUI</a></li>
+<li><a href="#prepare-device">Put your device in download mode</a></li>
+<li><a href="#create-pit">Create and download necessary files</a></li>
+<li><a href="#flash-partitions">Flash target partitions</a></li>
+<li><a href="#revision-history">Revision history</a></li>
+</ul>
+<h4><a name="need"></a>What you will need:</h4>
+<ul>
+<li>Santoku 0.1 or later</li>
+<li>Heimdall or Heimdall-Frontend Binary (Already included with Santoku)</li>
+<li>A Samsung Android device</li>
+<li>The files required to flash to your Android device
+<ul>
+<li><em>Note: The files required for each device and need is different. In this HOWTO we are flashing the recovery image, therefore we are using a recovery.bin file specific to our device. If you find a file that works for a device, please comment on this blog and share with the Community.</em></li>
+</ul>
+</li>
+</ul>
+<p><a href="#top">Top</a></p>
+<h4><a name="about-heimdall"></a>About Heimdall:</h4>
+<p>Heimdall is used to flash firmware onto Samsung Galaxy S devices. Flashing firmware allows the user to flash custom ROMs and custom recovery partitions on their Android device. For example, the HOWTO below walks you through flashing a temporary custom recovery image to a Samsung device. This temp recovery image gives the user root shell on a device where root shell was not possible otherwise. From the custom recovery the examiner is able to pull the /data and /system partitions from the device (among others), providing critical data during a forensic examination.</p>
+<p>Whether your goal is to flash a custom ROM to your Samsung Galaxy S device, to gain root access on an otherwise locked device, or to flash a separate partition for other means, Heimdall is a great tool to get you there.</p>
+<p><a href="#top">Top</a></p>
+<h4><a name="known-supported-devices"></a>Known supported devices:</h4>
+<ul>
+<li>Samsung Captivate</li>
+<li>Samsung Vibrant</li>
+<li>Samsung Fascinate</li>
+<li>Samsung Mesmerize</li>
+<li>Samsung Epic 4G</li>
+<li>Samsung Galaxy S 4G</li>
+<li>Samsung Infuse 4G</li>
+<li>Samsung GT-I9000T</li>
+<li>Samsung Galaxy Tab</li>
+<li>Samsung Galaxy S II</li>
+<li>Samsung GT-I9000</li>
+<li>Samsung Galaxy S GT-I9000</li>
+</ul>
+<p><a href="#top">Top</a></p>
+<h4><a name="run-heimdall"></a>Run the Heimdall GUI:</h4>
+<p>In Santoku navigate to Santoku &#8211;&gt; Development Tools &#8211;&gt; Heimdall GUI</p>
+<h4><a name="prepare-device"></a>Put your device in download mode:</h4>
+<p><em>Note: All commands listed below are applicable with both the Heimdall GUI and Heimdall in terminal.</em></p>
+<p>With your mobile device connected to your computer, reboot your device into download mode. Type:</p>
+<pre>adb reboot download</pre>
+<p>You should now see a screen with a yellow triangle and the words &#8220;Downloading&#8230;&#8221; similar to this:</p>
+<p><img class="alignnone size-large wp-image-1395" title="Download Mode" src="/wp-content/uploads/DownloadMode1-564x1024.jpg" alt="Download Mode " width="275"/></p>
+<p><a href="#top">Top</a></p>
+<h4><a name="create-pit"></a>In Heimdall, create and download necessary files:</h4>
+<p>Download your device&#8217;s Partition ID Table (PIT). On the &#8220;Utilities&#8221;tab, under the &#8220;Download PIT&#8221; section select &#8220;Save As&#8230;&#8221;, name the PIT file, and click &#8220;Save&#8221;, then &#8220;Download&#8221;.</p>
+<p><img class="alignnone size-full wp-image-1392" title="Successful_PIT_Download" src="/wp-content/uploads/Successful_PIT_Download.png" alt="" width="475"/></p>
+<p>A message will let you know that the PIT file has been downloaded successfully. Once you see your PIT file and Heimdall states &#8220;Re-attaching kernel driver&#8221;, you have successfully downloaded your device&#8217;s PIT file.</p>
+<p>Download partition and device files specific for what you want to flash. In this example, we want to flash a temporary recovery image to the recovery partition. To do this, we downloaded a recovery.bin file created by ClockworkMod that was specific to our model Samsung.</p>
+<p><a href="#top">Top</a></p>
+<h4><a name="flash-partitions"></a>Flash your target partitions:</h4>
+<p>In Heimdall, select the &#8220;Flash&#8221; tab. Browse to your newly created PIT file. Ensure that &#8220;Repartition&#8221; is unchecked and &#8220;No Reboot&#8221; is checked. Click &#8220;Add&#8221; in the Partition box on the right. Select the device&#8217;s target partition you are attempting to flash in the dropdown menu to the left. Browse to the target file you want to flash to the device and press &#8220;Start&#8221;.</p>
+<p><img class="alignnone size-full wp-image-1389" title="Pit_Recovery" src="/wp-content/uploads/Pit_Recovery.png" alt="" width="550"/></p>
+<p>If your flash is successful you should see a blue bar appear on your device like this:</p>
+<p><img class="alignnone size-large wp-image-1388" title="FlashSuccessful" src="/wp-content/uploads/FlashSuccessful-576x1024.jpg" alt="" width="275"/></p>
+<p>Heimdall will let you know the process has succeeded by re-attaching the kernel driver. Remove the battery, reinsert it and reboot.</p>
+<p><a href="#top">Top</a></p>
+
+
+      </div> 
+    </div> 
+  </div> 
+
+</div> 

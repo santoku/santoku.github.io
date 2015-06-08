@@ -1,0 +1,88 @@
+---
+layout: page
+status: publish
+published: true
+title: HOWTO use iPhone Backup Analyzer on Santoku Linux
+permalink: /howto/mobile-forensics/howto-use-iphone-backup-analyzer-on-santoku-linux/
+---
+
+<div class="main-area">
+
+  <div class="tools">
+    <div class="holder">
+      <div class="frame">
+        <h1>How Tos</h1>
+        <p class="breadcrumb"><a href="/">Home</a><a href="/howtos/">How Tos</a><span class='current_crumb'>HOWTO use iPhone Backup Analyzer on Santoku Linux </span></p>
+      </div> 
+    </div> 
+  </div> 
+
+
+<div class="main-holder">
+<div id="content" class="content_blog">
+<div class="single_blog_wrap">
+<div class="post_title">
+<h2>HOWTO use iPhone Backup Analyzer on Santoku Linux</h2>
+</div> 
+
+<p><a name="top"></a><br/>
+This HOWTO will guide you through a simple overview on how to use iPhone Backup Analyzer (iPBA) and get the most out of your iOS backup analysis on Santoku Linux.</p>
+<h3><a name="toc"></a>Contents</h3>
+<ul>
+<li><a href="#what-you-will-need">What you will need</a></li>
+<li><a href="#getting-started">Getting started</a></li>
+<li><a href="#plugins">Plugins</a></li>
+<li><a href="#manual-analysis">Manual analysis</a></li>
+<li><a href="#revision-history">Revision History</a></li>
+</ul>
+<h4><a name="what-you-will-need"></a>What you will need:</h4>
+<ul>
+<li>Santoku Linux Alpha 0.3 (or later)</li>
+<li>A backup of an iOS device (please refer to <a title="HOWTO create a logical device backup using libimobiledevice on Santoku Linux " href="howto-create-a-logical-backup-of-an-ios-device-using-libimobiledevice-on-santoku-linux.html" target="_blank">libiMobile backup HOWTO</a>)</li>
+</ul>
+<h4><a name="getting-started"></a>Getting started:</h4>
+<p>Using the menu in Santoku, navigate to Santoku &#8211;&gt; Device Forensics &#8211;&gt; iPhone Backup Analyzer (GUI).</p>
+<p><img class="alignnone size-full wp-image-1441" title="Menu" src="/wp-content/uploads/Menu.jpg" alt="Menu" width="500"/></p>
+<p>A window will then pop-up asking you to provide the path of your iOS backup:</p>
+<p><img class="alignnone size-full wp-image-1434" title="backup_path" src="/wp-content/uploads/backup_path.jpg" alt="" width="416"/></p>
+<p><em>Note: If you used libimobiledevice backup to create the backup for your iOS device, the path should be similar to: &lt;Path_where_you_saved_your_backups&gt;/&lt;UDID_of_your_device&gt;</em></p>
+<p>Please make sure you double-click on that folder when selecting the backup folder in the iPBA pop-up above.</p>
+<p>Once your selection is made, the main window of iPBA will appear:</p>
+<p><img class="alignnone size-large wp-image-1440" title="main_window" src="/wp-content/uploads/main_window-1024x644.jpeg" alt="" width="550"/></p>
+<p><em>(Personal information has been removed from screenshots)</em></p>
+<p>The main window in the middle is the description window, which gives you detailed information about a specific selected item. To navigate to a specific item, use the bottom-left pane.</p>
+<p>You can either use the pre-configured plugins to access valuable pieces of information from your backup, like call history or SMS, or navigate manually through it to get to the data that interests you. We will give you a few examples of what you can do with iPBA using both methods:</p>
+<p><a href="#top">Top</a></p>
+<h4><a name="plugins"></a>Plugins</h4>
+<p>To access the plugins, click on the &#8220;Plugins&#8221; menu at the top of the iPBA window:</p>
+<p><img class="alignnone size-large wp-image-1444" title="PluginsMenu" src="/wp-content/uploads/PluginsMenu-1024x645.jpg" alt="" width="550"/></p>
+<p>If you click on &#8220;Call History&#8221; for example, you will be presented with a pop-up window that will list all calls present in the backup data:</p>
+<p><img class="alignnone size-full wp-image-1436" title="CallHistory" src="/wp-content/uploads/CallHistory.jpg" alt="Call History" width="550"/></p>
+<p>You can also try the &#8220;Contacts Browser&#8221; to see the contacts stored in the phone at the time of the backup:</p>
+<p><img class="alignnone size-full wp-image-1437" title="Contact Plugin" src="/wp-content/uploads/contactplugin.jpg" alt="Contact Plugin in iPhone Backup Analyzer" width="550"/></p>
+<p>Another interesting artifact to take a look at would be the SMS messages. By clicking on the &#8220;SMS Browser&#8221; plugin in the menu, you will be presented with a pop-up window, similar to the contact or call history ones, that will allow you to browse the SMS messages stored in the backup:</p>
+<p><img class="alignnone size-full wp-image-1446" title="SMS Browser" src="/wp-content/uploads/SMSBrowser.jpg" alt="SMS Browser in iPBA" width="550"/></p>
+<p>Finally, another plugin of interest is the &#8220;Thumbnails browser&#8221; that allows you to navigate through previews of photos stored on the device at the time of the backup:</p>
+<p><img class="alignnone size-full wp-image-1442" title="PhotoBrowser" src="/wp-content/uploads/PhotoBrowser.jpg" alt="Photo browser" width="550"/></p>
+<p><a href="#top">Top</a></p>
+<h4><a name="manual-analysis"></a>Manual analysis:</h4>
+<p>If you want to go deeper in your analysis, you can manually browse for items of interest. This will also allow you to retrieve additional details about the artifacts.</p>
+<p>For example, by navigating in the bottom-left panel to &#8220;CameraRollDomain &#8211;&gt; Media &#8211;&gt; Media/DCIM/100Apple&#8221;, you will see the listing of media files (pictures and videos) stored in the phone under the Camera Roll folder at the time of the backup.</p>
+<p><img class="alignnone size-full wp-image-1443" title="picslistings" src="/wp-content/uploads/picslistings.jpg" alt="" width="324"/></p>
+<p>For example, by clicking on the first .jpg image listed and selecting the &#8220;Description&#8221; pane, we get alot of useful information about the photo, including potentially valuable data from EXIF tags, such as date and time the photo was taken, GPS location data about where the photo was taken, and more.</p>
+<p><img class="alignnone size-full wp-image-1438" title="EXIF_photo" src="/wp-content/uploads/EXIF_photo.jpg" alt="EXIF Data analyzed with iPBA" width="550"/></p>
+<p>iPBA also has a powerful SQLite viewer that allows you to browse data inside those databases directly from the application. For example, if we wanted to see the Safari bookmarks stored in this backup, using the bottom-left pane we would navigate to &#8220;Home Domain &#8211;&gt; &lt;Library/Safari&gt; &#8211;&gt; bookmarks.db.</p>
+<p><img class="alignnone size-full wp-image-1447" title="tables_bookmarks" src="/wp-content/uploads/tables_bookmarks.jpg" alt="Tables" width="204" height="297"/></p>
+<p>On the bottom-right pane you will now see the &#8220;Tables&#8221; pane being populated with the listing of tables contained in this database.</p>
+<p><img class="alignnone size-full wp-image-1447" title="Bookmarks Table" src="/wp-content/uploads/tables_bookmarks.jpg" alt="Bookmarks Table" width="204" height="297"/></p>
+<p>If you click on &#8220;bookmarks&#8221; you will be able to see the different Safari bookmarks in the middle pane:</p>
+<p><img class="alignnone size-full wp-image-1452" title="Reading List" src="/wp-content/uploads/readinglist1.jpg" alt="Reading List" width="550"/></p>
+<p>While there is still quite a bit to be explored using iPBA, the scope of this tutorial aims at getting you started with using iPBA.</p>
+<p><a href="#top">Top</a></p>
+
+
+      </div> 
+    </div> 
+  </div> 
+
+</div> 

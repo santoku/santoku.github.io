@@ -1,0 +1,338 @@
+---
+layout: page
+status: publish
+published: true
+title: HOWTO create a logical iOS device backup using libimobiledevice on Santoku Linux
+permalink: /howto/mobile-forensics/howto-create-a-logical-backup-of-an-ios-device-using-libimobiledevice-on-santoku-linux/
+---
+
+<div class="main-area">
+
+  <div class="tools">
+    <div class="holder">
+      <div class="frame">
+        <h1>How Tos</h1>
+        <p class="breadcrumb"><a href="/">Home</a><a href="/howtos/">How Tos</a><span class='current_crumb'>HOWTO create a logical iOS device backup using libimobiledevice on Santoku Linux</span></p>
+      </div> 
+    </div> 
+  </div> 
+
+
+<div class="main-holder">
+<div id="content" class="content_blog">
+<div class="single_blog_wrap">
+<div class="post_title">
+<h2>HOWTO create a logical iOS device backup using libimobiledevice on Santoku Linux</h2>
+
+</div> 
+
+<p><a name="top"></a><br/>
+This HOWTO will guide you through the process of creating a logical backup of an iOS device using libimobiledevice and Santoku.</p>
+<h3><a name="toc"></a>Contents</h3>
+<ul>
+<li><a href="#need">What you will need</a></li>
+<li><a href="#running-libimobiledevice">Running libimobiledevice</a></li>
+<li><a href="#backing-up-ios4">Backing up an iOS 4+ device</a></li>
+<li><a href="#extracting-ios-backup">Extracting backup files</a></li>
+<li><a href="#revision-history">Revision History</a></li>
+<li><a href="#appendix">Appendix: Listing of backup files from test iOS device</a></li>
+</ul>
+<h4><a name="need"></a>What you will need:</h4>
+<ul>
+<li>Santoku &#8211; Alpha 0.2 (or later)</li>
+<li>idevicebackup2</li>
+<li>An iOS device running iOS 4+</li>
+</ul>
+<h4><a name="running-libimobiledevice"></a>Running libimobiledevice</h4>
+<p>First, navigate to Santoku &#8211;&gt; Device Forensics &#8211;&gt; lib-iMobile</p>
+<p><img class="aligncenter size-full wp-image-875" title="Santoku_menu_libimobile_small" src="/wp-content/uploads/Santoku_menu_libimobile_small.jpg" alt="" width="550"/></p>
+<p>This should open a terminal window and list the commands available in the libimobiledevice tool.</p>
+<p><img class="alignnone size-full wp-image-872" title="libimobile_ls" src="/wp-content/uploads/libimobile_ls.png" alt="" width="550"/></p>
+<p>At this point, you can connect your iOS device to Santoku. If you are using a VM, make sure the USB device is &#8220;attached&#8221; to the VM and not the host.</p>
+<p>You can easily check the connectivity between your iPhone and Santoku by running this command in a terminal window:</p>
+<pre>idevice_id -l</pre>
+<p>&nbsp;</p>
+<p>This should return the UDID of your phone. If you get an error message, this is likely because your phone is not connected properly to Santoku, and you should resolve that issue before continuing.</p>
+<p>If your device is password protected, you will see a message like this:</p>
+<p><img class="alignnone size-full wp-image-870" title="iphone_locked" src="/wp-content/uploads/iphone_locked.png" alt="" width="366"/></p>
+<p>Since you can not do a backup of a locked iOS device using libimobiledevice, you will need to unlock your phone prior to running the command.</p>
+<p>Also, please change the autolock settings to &#8220;Never so that the connection does not drop if the device goes to sleep during the backup process. You can always change this setting back to a shorter time after the backup is completed.</p>
+<p>This setting can be found under: Settings &#8211;&gt; General &#8211;&gt; Auto-Lock</p>
+<p><img class="alignnone size-full wp-image-905" title="iOS-4-auto-lock" src="/wp-content/uploads/IMG_0101.png" alt="" width="250"/></p>
+<p><a href="#top">Top</a></p>
+<h4><a name="backing-up-ios4"></a>Backing up an iOS 4+ device</h4>
+<p>You are now ready to start the backup of your device. In the terminal window, run the following commands:</p>
+<pre>mkdir ~/Documents/iPhoneBackups
+idevicebackup2 backup ~/Documents/iPhoneBackups/</pre>
+<p>&nbsp;</p>
+<p><em>Note: If your iOS device is running iOS 3 or earlier, see the idevicebackup command</em></p>
+<p>The backup process will start and can take a while, depending on the amount of data currently stored on your device:</p>
+<pre>santoku@santoku-terry:/usr/local/bin$ idevicebackup2 backup -d ~/Documents/iPhoneBackups/
+Backup directory is "/home/santoku/Documents/iPhoneBackups/"
+Started "com.apple.mobilebackup2" service on port 49226.
+Negotiated Protocol Version 2.1
+Starting backup...
+Requesting backup from device...
+Full backup mode.
+[=                                                 ]   0% Finished
+[=                                                 ]   0% Finished
+Receiving files[=                                                 ]   
+0% (110.2 kB/83.1 MB)    [=                                                 ]   
+0% (110.3 kB/83.1 MB)    [=                                                 ]   
+0% (157.5 kB/83.1 MB)    [=                                                 ]   
+0% (164.7 kB/83.1 MB)    [=                                                 ]   
+0% (171.9 kB/83.1 MB)    [=                                                 ]   
+1% (434.1 kB/83.1 MB)    [=                                                 ]   
+1% (445.6 kB/83.1 MB)    [=                                                 ]   
+1% (445.6 kB/83.1 MB)    [=                                                 ]   
+1% (446.0 kB/83.1 MB)    [=                                                 ]   
+1% (545.6 kB/83.1 MB)    [=                                                 ]   
+1% (602.9 kB/83.1 MB)    [=                                                 ]   
+1% (619.5 kB/83.1 MB)    [=                                                 ]   
+1% (881.7 kB/83.1 MB)    [==================================================] 100% (83.1 MB/83.1 MB)</pre>
+<p>The backup will be located in a folder named after the UDID of your device, and is stored in the destination folder you specified in the command above.</p>
+<p><a href="#top">Top</a></p>
+<h4><a name="extracting-ios-backup"></a>Extracting backup files</h4>
+<p>Now, &#8220;unback&#8221; (extract) the file in order to make it easily browsable:</p>
+<pre>idevicebackup2 unback ~/Documents/iPhoneBackups/</pre>
+<p>&nbsp;</p>
+<p>This will create by default a readable extraction of all backups stored in the directory. If you only want to extract a specific backup, you can use the -u flag followed by the UDID of the device (which is also the folder name of the backup) when running the idevicebackup2 unback command.</p>
+<pre>idevicebackup2 -u &lt;UDID&gt; unback ~/Documents/iPhoneBackups/</pre>
+<p>&nbsp;</p>
+<p>Be careful to point your idevicebackup2 to the main directory that holds the UDID directories inside (ex. ~/Documents/iPhoneBackups/) and not the UDID directories themselves (ex. ~/Documents/iPhoneBackups/&lt;UDID&gt;/) or you will run into errors when extracting the backup(s).</p>
+<p>If you take a look at the new directory where you saved your backups, you should now see a new directory named: &#8220;_unback_&#8221;.</p>
+<p>Navigate to this directory, where you will find folder(s) named, once again, after the UDID of the devices successfully backed up. Navigate to the one that interests you and you will be able to explore the full backup of your iOS device.</p>
+<p><img class="alignnone size-full wp-image-919" title="browse-iOS-backup-Santoku-Linux" src="/wp-content/uploads/browse-iOS-backup-Santoku-Linux.png" alt="" width="500"/></p>
+<p>You might note in the above screenshot that the iOS device is actually mounted and browsable through Santoku Linux. We will have anther HOWTO explaining how this works and how to use this data.</p>
+<p>Investigating the backup itself for a security of forensic analysis is out of the scope of this tutorial (but covered in viaForensics&#8217; <a href="https://viaforensics.com/resources/iphone-ios-forensics-mobile-security-book/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://viaforensics.com/resources/iphone-ios-forensics-mobile-security-book/']);" target="_new">iPhone and iOS Forensics book</a>), but it is worth mentioning that SMS, call log, media, listing of apps installed, as well as other various preferences and many other artifacts can easily be recovered thanks to an iOS backup.</p>
+<p><a href="#top">Top</a></p>
+
+<h4><a name="appendix"></a>Appendix: Listing of backup files from test iOS device</h4>
+<pre>santoku@santoku-vm:~/Documents/iPhoneBackups/_unback_$ tree
+.
+└── 12fds56[UDID Hidden]asdfa3242
+└── var
+├── Keychains
+│   ├── keychain-backup.plist
+│   ├── ocspcache.sqlite3
+│   └── TrustStore.sqlite3
+├── Managed Preferences
+│   └── mobile
+├── mobile
+│   ├── Applications
+│   │   ├── com.popcap.ios.BejBlitz
+│   │   │   ├── Documents
+│   │   │   │   ├── cdata_sd.dat
+│   │   │   │   ├── MetricsCache
+│   │   │   │   └── userdata
+│   │   │   │   └── CDsd__DEFAULTUSER_.dat
+│   │   │   └── Library
+│   │   │   └── Preferences
+│   │   │   ├── com.popcap.bejblitz.plist
+│   │   │   └── com.popcap.ios.BejBlitz.plist
+│   ├── Library
+│   │   ├── AddressBook
+│   │   │   ├── AddressBookImages.sqlitedb
+│   │   │   └── AddressBook.sqlitedb
+│   │   ├── BulletinBoard
+│   │   │   ├── ClearedSections.plist
+│   │   │   └── SectionInfo.plist
+│   │   ├── Caches
+│   │   │   ├── com.apple.WebAppCache
+│   │   │   │   └── ApplicationCache.db
+│   │   │   └── Safari
+│   │   │   └── Thumbnails
+│   │   │   ├── 02D563CB-B0A8-4F5A-9ACE-359A180ABD86.png
+│   │   │   ├── 49BEF678-2AE9-4C24-BFC8-043CBBF97F68.png
+│   │   │   ├── BAE3B0AB-ED82-491E-B4C8-6FA9BBE31D83.png
+│   │   │   └── DE2DEE51-8F97-4B82-938A-621E74DDFB01.png
+│   │   ├── Calendar
+│   │   │   ├── Calendar.sqlitedb
+│   │   │   └── Extras.db
+│   │   ├── com.apple.itunesstored
+│   │   │   ├── itunesstored2.sqlitedb
+│   │   │   └── itunesstored_private.sqlitedb
+│   │   ├── ConfigurationProfiles
+│   │   │   ├── 2afbd467cd30a3c4889fe51b356827322523ffd9a+1553823060.stub
+│   │   │   ├── 439ef0b556f6862c89ecd06d600eae9f6e54a96ca+456128964.stub
+│   │   │   ├── 5b0877b4d973081a636224e0e547619f1447afbaa+1654179775.stub
+│   │   │   ├── c660f7c9ed697ff8cef008169ddd7855359ea82ca+3377108180.stub
+│   │   │   ├── com_apple_attwifi+3369864630.stub
+│   │   │   ├── KeyMapTable
+│   │   │   ├── MCDataMigration.plist
+│   │   │   ├── PayloadDependency.plist
+│   │   │   ├── PayloadManifest.plist
+│   │   │   ├── ProfileTruth.plist
+│   │   │   ├── PublicInfo
+│   │   │   │   ├── EffectiveUserSettings.plist
+│   │   │   │   ├── MCMeta.plist
+│   │   │   │   └── Truth.plist
+│   │   │   └── UserSettings.plist
+│   │   ├── Cookies
+│   │   │   ├── com.apple.itunesstored.2.sqlitedb
+│   │   │   └── Cookies.binarycookies
+│   │   ├── Keyboard
+│   │   │   ├── dynamic-text.dat
+│   │   │   ├── UserDictionary.sqlite
+│   │   │   └── UserDictionaryWordKeyPairs.plist
+│   │   ├── Mail
+│   │   │   └── AutoFetchEnabled
+│   │   ├── Maps
+│   │   │   ├── Bookmarks.plist
+│   │   │   ├── Directions.plist
+│   │   │   └── History.plist
+│   │   ├── MobileInstallation
+│   │   ├── MusicLibrary
+│   │   ├── Notes
+│   │   │   ├── notes.idx
+│   │   │   └── notes.sqlite
+│   │   ├── Preferences
+│   │   │   ├── com.apple.Accessibility.plist
+│   │   │   ├── com.apple.accountsettings.plist
+│   │   │   ├── com.apple.AdLib.plist
+│   │   │   ├── com.apple.AdSheetPhone.plist
+│   │   │   ├── com.apple.aggregated.plist
+│   │   │   ├── com.apple.appleaccount.plist
+│   │   │   ├── com.apple.AppStore.plist
+│   │   │   ├── com.apple.AppSupport.plist
+│   │   │   ├── com.apple.apsd.launchd
+│   │   │   ├── com.apple.apsd.plist
+│   │   │   ├── com.apple.assistant.token.plist
+│   │   │   ├── com.apple.camera.plist
+│   │   │   ├── com.apple.celestial.plist
+│   │   │   ├── com.apple.certui.plist
+│   │   │   ├── com.apple.conference.plist
+│   │   │   ├── com.apple.dataaccess.dataaccessd.plist
+│   │   │   ├── com.apple.facetime.plist
+│   │   │   ├── com.apple.gamed.plist
+│   │   │   ├── com.apple.GEO.plist
+│   │   │   ├── com.apple.GMM.plist
+│   │   │   ├── com.apple.imagent.plist
+│   │   │   ├── com.apple.imdsmsrecordstore.plist
+│   │   │   ├── com.apple.imessage.plist
+│   │   │   ├── com.apple.imservice.FaceTime.plist
+│   │   │   ├── com.apple.imservice.Madrid.plist
+│   │   │   ├── com.apple.itunesstored.plist
+│   │   │   ├── com.apple.keyboard.plist
+│   │   │   ├── com.apple.LaunchServices.plist
+│   │   │   ├── com.apple.locationd.plist
+│   │   │   ├── com.apple.managedconfiguration.janitor.plist
+│   │   │   ├── com.apple.Maps.plist
+│   │   │   ├── com.apple.mms_override.plist
+│   │   │   ├── com.apple.mobilecal.plist
+│   │   │   ├── com.apple.MobileInternetSharing.plist
+│   │   │   ├── com.apple.mobileipod.plist
+│   │   │   ├── com.apple.mobilemail.plist
+│   │   │   ├── com.apple.mobilenotes.plist
+│   │   │   ├── com.apple.mobilephone.plist
+│   │   │   ├── com.apple.mobilesafari.plist
+│   │   │   ├── com.apple.mobileslideshow.plist
+│   │   │   ├── com.apple.MobileSMS.plist
+│   │   │   ├── com.apple.mobilestoresettings.plist
+│   │   │   ├── com.apple.mobile.SyncMigrator.plist
+│   │   │   ├── com.apple.PeoplePicker.plist
+│   │   │   ├── com.apple.preferences.datetime.plist
+│   │   │   ├── com.apple.preferences.network.plist
+│   │   │   ├── com.apple.Preferences.plist
+│   │   │   ├── com.apple.purplebuddy.plist
+│   │   │   ├── com.apple.springboard.plist
+│   │   │   ├── com.apple.stocks.plist
+│   │   │   ├── com.apple.ubd.plist
+│   │   │   ├── com.apple.voiceservices.plist
+│   │   │   ├── com.apple.weather.plist
+│   │   │   ├── com.apple.webapp.plist
+│   │   │   ├── com.apple.WebFoundation.plist
+│   │   │   ├── com.apple.youtube.dp.plist
+│   │   │   ├── com.apple.youtubeframework.plist
+│   │   │   └── com.apple.youtube.plist
+│   │   ├── Safari
+│   │   │   ├── Bookmarks.db
+│   │   │   ├── History.plist
+│   │   │   └── SuspendState.plist
+│   │   ├── SMS
+│   │   │   ├── Drafts
+│   │   │   └── sms.db
+│   │   ├── SpringBoard
+│   │   │   ├── applicationstate.plist
+│   │   │   ├── DownloadingIconImageCache
+│   │   │   ├── IconState.plist
+│   │   │   ├── LockBackground.cpbitmap
+│   │   │   ├── LockBackgroundThumbnail.jpg
+│   │   │   └── PushStore
+│   │   │   ├── com.popcap.ios.BejBlitz.pushstore
+│   │   ├── Voicemail
+│   │   │   └── voicemail.db
+│   │   ├── WebClips
+│   │   │   └── BCBC3F654C994183AC0F7263C760677E.webclip
+│   │   │   ├── icon.png
+│   │   │   └── Info.plist
+│   │   └── WebKit
+│   │   └── Databases
+│   │   ├── Databases.db
+│   │   └── https_m.mg.mail.yahoo.com_0
+│   │   └── 0000000000000001.db
+│   └── Media
+│   ├── DCIM
+│   │   └── 100APPLE
+│   │   ├── IMG_0002.JPG
+│   │   ├── IMG_0003.PNG
+│   │   ├── IMG_0100.PNG
+│   │   └── IMG_0101.PNG
+│   ├── iTunes_Control
+│   │   └── Device
+│   ├── PhotoData
+│   │   ├── AlbumsMetadata
+│   │   ├── MISC
+│   │   │   ├── DCIM_APPLE.plist
+│   │   │   └── PreviewWellImage.tiff
+│   │   ├── Photos.sqlite
+│   │   ├── Photos.sqlite.aside
+│   │   ├── Thumbnails
+│   │   │   ├── 120x120.ithmb
+│   │   │   ├── 158x158.ithmb
+│   │   │   └── thumbnailConfiguration
+│   │   └── Videos
+│   └── Recordings
+│   ├── AssetManifest.plist
+│   ├── Recordings.db
+│   ├── SyncAnchor.plist
+│   └── SyncedAssets.plist
+├── MobileDevice
+│   └── ProvisioningProfiles
+│   ├── 3447BA08-5307-299F-E854-6D79FBCEB8EC
+├── preferences
+│   └── SystemConfiguration
+│   ├── com.apple.AutoWake.plist
+│   ├── com.apple.mobilegestalt.plist
+│   ├── com.apple.network.identification.plist
+│   ├── com.apple.PowerManagement.plist
+│   ├── com.apple.radios.plist
+│   ├── com.apple.wifi.plist
+│   └── preferences.plist
+├── root
+│   └── Library
+│   ├── Caches
+│   │   ├── Backup
+│   │   └── locationd
+│   │   ├── clients.plist
+│   │   ├── consolidated.db
+│   │   └── gyroCal.db
+│   └── Preferences
+│   ├── com.apple.coreservices.appleidauthenticationinfo.plist
+│   └── com.apple.preferences.network.plist
+└── wireless
+└── Library
+├── CallHistory
+│   └── call_history.db
+└── Preferences
+├── com.apple.CommCenter.counts.plist
+├── com.apple.commcenter.plist
+└── csidata</pre>
+<p><a href="#top">Top</a></p>
+
+
+      </div> 
+    </div> 
+  </div> 
+
+</div> 

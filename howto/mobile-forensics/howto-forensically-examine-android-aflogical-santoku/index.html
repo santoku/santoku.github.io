@@ -1,0 +1,145 @@
+---
+layout: page
+status: publish
+published: true
+title: HOWTO forensically examine an Android device with AFLogical OSE on Santoku Linux
+permalink: /howto/mobile-forensics/howto-forensically-examine-android-aflogical-santoku/
+---
+
+<div class="main-area">
+
+  <div class="tools">
+    <div class="holder">
+      <div class="frame">
+        <h1>How Tos</h1>
+        <p class="breadcrumb"><a href="/">Home</a><a href="/howtos/">How Tos</a><span class='current_crumb'>HOWTO forensically examine an Android device with AFLogical OSE on Santoku Linux </span></p>
+      </div> 
+    </div> 
+  </div> 
+
+
+  <div class="main-holder">
+    <div id="content" class="content_blog">
+      <div class="single_blog_wrap">
+        <div class="post_title">
+          <h2>HOWTO forensically examine an Android device with AFLogical OSE on Santoku Linux</h2>
+        </div> 
+
+        <p><a name="top"></a><br/>
+        This HOWTO will guide you through the process of forensically analysing your Android device using AFLogical OSE on Santoku.</p>
+        <h3><a name="toc"></a>Contents</h3>
+        <ul>
+        <li><a href="howto-forensically-examine-android-aflogical-santoku.html#need">What you will need</a></li>
+        <li><a href="howto-forensically-examine-android-aflogical-santoku.html#aflogical-ose">AFLogical OSE background</a></li>
+        <li><a href="howto-forensically-examine-android-aflogical-santoku.html#installing-AFLogical">Installing AFLogical OSE</a></li>
+        <li><a href="howto-forensically-examine-android-aflogical-santoku.html#santoku-0-4">Instructions for Santoku 0.4</a></li>
+        <li><a href="howto-forensically-examine-android-aflogical-santoku.html#santoku-0-3">Instructions for Santoku 0.3 and earlier</a></li>
+        <li><a href="howto-forensically-examine-android-aflogical-santoku.html#running-AFLogical">Run AFLogical on your Android</a></li>
+        <li><a href="howto-forensically-examine-android-aflogical-santoku.html#pull-data">Pull and examine the extracted data</a></li>
+        <li><a href="howto-forensically-examine-android-aflogical-santoku.html#revision-history">Revision history</a></li>
+        </ul>
+        <h4><a name="need"></a>What you will need:</h4>
+        <ul>
+        <li>Santoku &#8211; Alpha 0.1 (or later)</li>
+        <li>AFLogical OSE (already installed in Santoku)</li>
+        <li>An Android device (with adb enabled)</li>
+        </ul>
+        <h4><a name="aflogical-ose"></a>AFLogical OSE Background</h4>
+        <p>AFLogical OSE was <a href="https://viaforensics.com/android-forensics/aflogical-open-source-edition-free-android-forensics-tooldownload.html" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://viaforensics.com/android-forensics/aflogical-open-source-edition-free-android-forensics-tooldownload.html']);" target="_new">released in December 2011</a> and is now hosted on <a href="https://github.com/viaforensics/android-forensics" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://github.com/viaforensics/android-forensics']);" target="_new">GitHub</a>. The app provides a basic framework for extracting data from Android devices using Content Providers and then saves the data to the SD Card of the device including:</p>
+        <ul>
+        <li>Contacts</li>
+        <li>Call Logs</li>
+        <li>SMS</li>
+        <li>MMS</li>
+        <li>MMS Parts</li>
+        <li>Device info</li>
+        </ul>
+        <p>AFLogical OSE has been successfully tested on Android 1.5 through 4.1 (Jelly Bean) and across many non-standard Android devices.</p>
+        <p><a href="howto-forensically-examine-android-aflogical-santoku.html#top">Top</a></p>
+        <h4><a name="installing-AFLogical"></a>Installing and running AFLogical OSE</h4>
+        <p>First, let&#8217;s get a terminal prompt in the correct directory by navigating to Santoku &#8211;&gt; Device Forensics &#8211;&gt; AFLogical OSE.</p>
+        <p><img class="alignnone size-full wp-image-1044" title="AFLogical_Nautilus" src="/wp-content/uploads/AFLogical_Nautilus.png" alt="" width="550"/></p>
+        <p>To install AFLogical OSE, connect your Android device over USB and if you are running Santoku CE in a VM, make sure you pass the USB connection through. You can run the following command to verify Santoku can communicate with your Android device:</p>
+        <pre>adb devices</pre>
+        <p>&nbsp;</p>
+        <p>which should return your device serial number.</p>
+        <pre>santoku@santoku-vm:/opt/santoku/af-logical$ adb devices
+        * daemon not running. starting it now on port 5037 *
+        * daemon started successfully *
+        List of devices attached 
+        01653EF81C00510F	device</pre>
+        <p>&nbsp;</p>
+        <p>If you do not see something similar to this, you need to resolve this issue first.</p>
+        <p>Next, you need to push AFLogical OSE to your Android device:</p>
+        <h4><a name="santoku-0-4"></a>For Santoku 0.4 and later</h4>
+        <p>Install the application to your device:</p>
+        <pre>aflogical-ose</pre>
+        <p>You should receive a success message as follows:</p>
+        <pre>634 KB/s (28794 bytes in 0.044s)
+        	pkg: /data/local/tmp/AFLogical-OSE_1.5.2.apk
+        Success
+        
+        Starting: Intent { cmp=com.viaforensics.android.aflogical_ose/com.viaforensics.android.ForensicsActivity }
+        
+        Press enter to pull /sdcard/forensics into ~/aflogical-data/</pre>
+        <p>Again, if you receive an error, you need to resolve the issue.</p>
+        <p>Next, on your target device, select the data you want to extract and click &#8220;Capture&#8221;:</p>
+        <p><img class="alignnone size-full wp-image-1124" title="AFLogicalExtractingData" src="/wp-content/uploads/AFLogicalExtractingData.png" alt="AFLogical at work extracting physical data" width="240"/></p>
+        <p>In your AFLogical-ose terminal window in Santoku, press enter to pull the data from your SDCard to the location &#8220;~/aflogical-data&#8221;. Santoku will automatically pull all the data recovered from your device to that location.</p>
+        <p>To view the data, open a terminal window and type:</p>
+        <pre>$ cd ~/aflogical-data/
+        $ ls
+        20131028.1039</pre>
+        <p>The data is stored under a folder labeled with the date and time of the acquisition. In this example, it was 2013-10-28 at 10:39 local time.</p>
+        <p>You can then open the &#8220;~/aflogical-data&#8221; directory in Nautilus and browse any images as well as the extracted data (such as contacts, call logs, mms/sms, and device info) in CSV format:</p>
+        <p><a href="/wp-content/uploads/aflogical-data.png"><img src="/wp-content/uploads/aflogical-data.png" alt="aflogical-data" width="550" class="alignnone size-full wp-image-1698"/></a></p>
+        <p><a href="howto-forensically-examine-android-aflogical-santoku.html#top">Top</a></p>
+        <p><a name="santoku-0-3"></a><br/>
+        <h4>For Santoku 0.1 to 0.3:</h4>
+        <p>First, install the application to the device:</p>
+        <pre>adb install AFLogical-OSE_1.5.2.apk</pre>
+        <p>You should receive a success message as follows:</p>
+        <pre>santoku@santoku-vm:/opt/santoku/af-logical$ adb install AFLogical-OSE_1.5.2.apk
+        574 KB/s (28794 bytes in 0.048s)
+        	pkg: /data/local/tmp/AFLogical-OSE_1.5.2.apk
+        Success</pre>
+        <p>Again, if you receive an error, you need to resolve the issue.</p>
+        <p><a href="howto-forensically-examine-android-aflogical-santoku.html#top">Top</a></p>
+        <h4><a name="running-AFLogical"></a>Run AFLogical on your Android device:</h4>
+        <p>To run AFLogical OSE, , navigate to it through Applications &#8211;&gt; AFLogical OSE:</p>
+        <p><img class="alignnone size-full wp-image-1125" title="AFLogicalOnAndroid.png" src="/wp-content/uploads/AFLogicalOnAndroid.png.jpg" alt="AFLogical in an Android's app menu" width="240"/></p>
+        <p>Then select the data you want to extract and click &#8220;Capture&#8221;:</p>
+        <p><img class="alignnone size-full wp-image-1124" title="AFLogicalExtractingData" src="/wp-content/uploads/AFLogicalExtractingData.png" alt="AFLogical at work extracting physical data" width="240"/></p>
+        <p>AFLogical OSE will then save the extracted data on the SD Card of the device. You can now uninstall AFLogical OSE with the following command:</p>
+        <pre>adb uninstall com.viaforensics.android.aflogical_ose</pre>
+        <p>&nbsp;</p>
+        <p>which will close the app (if still running) and remove from the device:</p>
+        <pre>santoku@santoku-vm:/opt/santoku/af-logical$ adb uninstall com.viaforensics.android.aflogical_ose
+        Success</pre>
+        <p><a href="howto-forensically-examine-android-aflogical-santoku.html#top">Top</a></p>
+        <h4><a name="pull-data"></a>Pull and examine the extracted data:</h4>
+        <p>AFLogical OSE creates a folder on the SD Card called forensics and then a subfolder with the date and time of the extraction. The easiest way to copy the data to Santoku is with the recursive &#8220;adb pull&#8221; command:</p>
+        <pre>adb pull /mnt/sdcard/forensics</pre>
+        <p>&nbsp;</p>
+        <p>which will extract all data under that directory (so, if you reuse a removable SD Card, you might have multiple subfolders with data). Here&#8217;s some example output (truncated for space):</p>
+        <pre>santoku@santoku-vm:/tmp$ adb pull /mnt/sdcard/forensics
+        pull: building file list...
+        pull: /mnt/sdcard/forensics/20120912.0741/Contacts Phones.csv -&gt; ./20120912.0741/Contacts Phones.csv
+        pull: /mnt/sdcard/forensics/20120912.0741/SMS.csv -&gt; ./20120912.0741/SMS.csv
+        pull: /mnt/sdcard/forensics/20120912.0741/MMSParts.csv -&gt; ./20120912.0741/MMSParts.csv
+        pull: /mnt/sdcard/forensics/20120912.0741/MMS.csv -&gt; ./20120912.0741/MMS.csv
+        pull: /mnt/sdcard/forensics/20120912.0741/CallLog Calls.csv -&gt; ./20120912.0741/CallLog Calls.csv
+        pull: /mnt/sdcard/forensics/20120912.0741/info.xml -&gt; ./20120912.0741/info.xml
+        pull: /mnt/sdcard/forensics/20120912.0741/Photo0284.jpg -&gt; ./20120912.0741/Photo0284.jpg
+        
+        11 files pulled. 0 files skipped.
+        499 KB/s (893180 bytes in 1.746s)</pre>
+        <p>&nbsp;</p>
+        <p>You can then open the directory in Nautilus and browse any images as well as the extracted data (such as contacts, call logs, mms/sms, and device info) in CSV format:</p>
+        <p><img class="alignnone  wp-image-1143" title="AFLogicalResults" src="/wp-content/uploads/AFLogicalResults.png" alt="AFLogical results" width="550"/></p>
+        <p><a href="howto-forensically-examine-android-aflogical-santoku.html#top">Top</a></p>
+      </div> 
+    </div> 
+  </div> 
+
+</div> 

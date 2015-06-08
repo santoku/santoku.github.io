@@ -1,0 +1,81 @@
+---
+layout: page
+status: publish
+published: true
+title: "HOWTO install VMWare tools on Santoku Linux"
+permalink: /howto/installing-santoku/howto-install-vmware-tools-on-santoku-linux/
+---
+
+<div class="main-area">
+
+  <div class="tools">
+    <div class="holder">
+      <div class="frame">
+        <h1>How Tos</h1>
+        <p class="breadcrumb"><a href="/">Home</a><a href="/howtos/">How Tos</a><span class='current_crumb'>HOWTO install VMWare tools on Santoku Linux</span></p>
+      </div> 
+    </div> 
+  </div> 
+
+
+
+<div class="main-holder">
+<div id="content" class="content_blog">
+<div class="single_blog_wrap">
+<div class="post_title">
+<h2>HOWTO install VMWare tools on Santoku Linux</h2>
+</div> 
+
+<p><a name="top"></a><br/>
+This HOWTO will guide you through the installation of VMWare tools, which will enhance the performance and usability of your Santoku virtual instance in VMWare.</p>
+<h3><a name="toc"></a>Contents</h3>
+<ul>
+<li><a href="#what-you-will-need">What you will need</a></li>
+<li><a href="#before-install">Before installing</a></li>
+<li><a href="#extract-archive">Extract the archive</a></li>
+<li><a href="#install-tools">Install the VMWare tools</a></li>
+<li><a href="#revision-history">Revision History</a></li>
+</ul>
+<h4><a name="what-you-will-need"></a>What you will need:</h4>
+<ul>
+<li>Santoku Linux Alpha 0.1 (or later)</li>
+<li><a href="http://www.vmware.com/products/player/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.vmware.com/products/player/']);" target="_new">VMWare Player</a> (or other versions)</li>
+</ul>
+<h4><a name="before-install"></a>Before the install:</h4>
+<p><em>Note: This HOWTO focuses on the Mac OS X version of VMWare. You should be able to follow a similar procedure for other versions of VMWare on different platforms.</em></p>
+<p>It is assumed that you have already installed Santoku as a virtual machine (VM) and have booted the operating system.</p>
+<p>It is recommended that you update your VMWare Fusion software before completing this HOWTO. This can be done by navigating to: VMWare Fustion &#8211;&gt; Check For Updates.</p>
+<p><img class="alignnone size-full wp-image-1225" title="Check for Updates" src="/wp-content/uploads/checkforupdates.png" alt="Check for Updates" width="400"/></p>
+<p>After booting into Santoku in your VMWare player, navigate to the following option in the VMWare menu: <em>Virtual Machine &#8211;&gt; Install VMWare Tools</em></p>
+<p><img class="alignnone size-full wp-image-1226" title="Install VMware menu" src="/wp-content/uploads/InstallVMwaremenu.jpg" alt="Install VMware menu" width="475"/></p>
+<p>A notification window will pop-up, asking you to confirm the install. Click the &#8220;Install&#8221; button.</p>
+<p><img class="alignnone size-full wp-image-1227" title="Confirm Install" src="/wp-content/uploads/Install.png" alt="Confirm Install" width="400"/></p>
+<p>A notification window will pop-up, asking you to confirm the install. Click the &#8220;Install&#8221; button.</p>
+<p><a href="#top">Top</a></p>
+<h4><a name="extract-archive"></a>Extract the archive:</h4>
+<p>Open a terminal window and navigate to the VMWare mount point</p>
+<pre>cd /media/VMWare\ Tools/</pre>
+<p>&nbsp;</p>
+<p>Create a temporary folder where to store the extracted archive that contains VMWare tools</p>
+<pre>mkdir /tmp/VMWare</pre>
+<p>&nbsp;</p>
+<p>Extract the archive in the created folder.</p>
+<p><em>Note: Find the exact name of the archive by doing an &#8220;ls&#8221;, then typing the next command by replacing the file name accordingly.</em></p>
+<pre>tar xvf VMWareTools-8.8.4-730257.tar.gz -C /tmp/VMWare/</pre>
+<p>&nbsp;</p>
+<p><a href="#top">Top</a></p>
+<h4><a name="install-tools"></a>Install the VMWare tools</h4>
+<p>Navigate to the newly created temporary folder</p>
+<pre>cd /tmp/VMWare/vmware-tools-distrib</pre>
+<p>&nbsp;</p>
+<p><em>Note: The -d parameter will accept all default options in the script, which will speed up the process. While this parameter should be used for most users, if you decide to customize the installation, please remove this parameter from the command.</em></p>
+<pre>sudo ./vmware-install.pl -d</pre>
+<p>&nbsp;</p>
+<p>The script will now run. Upon successful completion, it is recommended that you restart your VMWare instance of Santoku.</p>
+<p><a href="#top">Top</a></p>
+
+      </div> 
+    </div> 
+  </div> 
+
+</div> 

@@ -1,0 +1,103 @@
+---
+layout: page
+status: publish
+published: true
+title: "HOWTO install Santoku in a virtual machine"
+permalink: /howto/installing-santoku/installing-santoku-in-a-virtual-machine/
+---
+
+<div class="main-area">
+
+  <div class="tools">
+    <div class="holder">
+      <div class="frame">
+        <h1>How Tos</h1>
+        <p class="breadcrumb"><a href="/">Home</a><a href="/howtos/">How Tos</a><span class='current_crumb'>HOWTO install Santoku in a virtual machine</span></p>
+      </div> 
+    </div> 
+  </div> 
+
+
+
+<div class="main-holder">
+<div id="content" class="content_blog">
+<div class="single_blog_wrap">
+<div class="post_title">
+<h2>HOWTO install Santoku in a virtual machine</h2>
+</div> 
+
+<p><a name="top"></a><br/>
+This HOWTO will guide you through the process of installing Santoku on a Virtual Machine.</p>
+<h3><a name="toc"></a>Contents</h3>
+<ul>
+<li><a href="installing-santoku-in-a-virtual-machine.html#what-you-will-need">What you will need</a></li>
+<li><a href="installing-santoku-in-a-virtual-machine.html#download-santoku">Download Santoku</a></li>
+<li><a href="installing-santoku-in-a-virtual-machine.html#set-up-virtual-machine">Set up your virtual machine</a></li>
+<li><a href="installing-santoku-in-a-virtual-machine.html#install-santoku">Install Santoku</a></li>
+<li><a href="installing-santoku-in-a-virtual-machine.html#install-guest-additions">Install guest additions (Virtual Box)</a></li>
+<li><a href="installing-santoku-in-a-virtual-machine.html#getting-started">Getting started with Santoku</a></li>
+<li><a href="installing-santoku-in-a-virtual-machine.html#revision-history">Revision History</a></li>
+</ul>
+<h4><a name="what-you-will-need"></a>What you will need:</h4>
+<ul>
+<li>Santoku Linux .ISO file
+<ul>
+<li><em>Note: Santoku Linux versions 0.4 and later are <strong>64-bit</strong> and require <strong>64-bit</strong> hardware to run</em></li>
+</ul>
+</li>
+<li>Virtual Box or VMWare Player</li>
+<li>A host machine with a minimum dual-core processor, 2GB RAM, and 40 GB free hard drive space or larger recommended</li>
+</ul>
+<h4><a name="download-santoku"></a>Download Santoku</h4>
+<p>Santoku is distributed as a .iso file. If you would like to install Santoku as the primary OS on your host machine, you will need to create a bootable DVD or USB using the .iso file.</p>
+<p>The recommended method of running Santoku is by installing it as a virtual machine (VM) inside either VirtualBox of VMWare player, which are applications that allow you to create and run VMs inside your native OS. This tutorial highlights how to install VirtualBox, however either should work for your needs. Virtualbox supports all major operating systems, including Microsoft Windows, Apple OS X and Linux.</p>
+<p>To acquire Santoku, you must first download the .iso file at <a href="../../download.html">https://www.santoku-linux.com/download</a></p>
+<p style=" text-align: left;"><a href="installing-santoku-in-a-virtual-machine.html#top">Top</a></p>
+<h4><a name="set-up-virtual-machine"></a>Set up your Virtual Machine</h4>
+<p>To run Santoku, you must install virtual machine software. For this section we will use the most recent version of VirtualBox, version 4.1.18. It can be downloaded at: <a href="http://www.virtualbox.org/wiki/Downloads" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.virtualbox.org/wiki/Downloads']);">http://www.virtualbox.org/wiki/Downloads</a></p>
+<p>After downloading, install the virtual machine software on your forensic work station, then follow the next steps to start the virtual machine (VM):</p>
+<p>Locate your VirtualBox installation. Select “New” to create a new VM.<br/>
+Going through the wizard, create a name for your VM and select the Linux/Debian Operating System and Version.</p>
+<p><em>Note: For Santoku Linux 0.4 and newer, select &#8220;Ubuntu 64-bit&#8221;. </em></p>
+<p><a href="../../santoku-linux/installing-santoku-in-a-virtual-machine/attachment/screenshot-at-2012-08-28-155407.html" rel="attachment wp-att-751"><img class="alignnone size-full wp-image-751" title="Name VM" src="../../wp-content/uploads/Screenshot-at-2012-08-28-155407.png" alt="" width="550" height="364"/></a></p>
+<p>Select an appropriate amount of memory for the VM. 512MB is standard, however increasing the memory size will typically make your VM run faster (but your host machine slower). If you&#8217;re going to use the Android Virtual Device Manager (AVD) and Android device Emulator frequently, we recommend selecting at least 4 GB of memory.</p>
+<p>At the “Virtual Hard Disk” screen, make sure “Start-up Disk” is checked and then select “Create new hard disk”.</p>
+<p>To create a new hard disk, select the “VDI (VirtualBox Disk Image)” option.</p>
+<p><a href="../../santoku-linux/installing-santoku-in-a-virtual-machine/attachment/vdi.html" rel="attachment wp-att-672"><img class="alignnone size-full wp-image-672" title="VDI" src="../../wp-content/uploads/VDI.png" alt="" width="550"/></a></p>
+<p>On the next screen, select “Dynamically allocated” and click &#8216;Next&#8217;.</p>
+<p>Choose the Virtual disk location to store the virtual hard disk by clicking the folder icon underneath the &#8216;Location&#8217; header, then click the “Save” button.</p>
+<p>Adjust the &#8216;Size&#8217; slider to allocate however much space you would like for your Santoku hard drive. Depending on your use, you may want to set this to a smaller or a larger value. The default in VirtualBox is 8 GB, we recommend increasing this to 40GB, as show below. When finished, click “Next”.</p>
+<p><a href="../../santoku-linux/installing-santoku-in-a-virtual-machine/attachment/vdisize.html" rel="attachment wp-att-673"><img class="alignnone size-full wp-image-673" title="VDISize" src="../../wp-content/uploads/VDISize.png" alt="" width="550"/></a><br/>
+Complete the process by clicking “Create”. This will bring you back to the main VirtualBox menu.</p>
+<p>To get your Santoku-Linux to run on the VirtualBox, you need to have it attached it to your newly created Virtual Machine. This is the same as putting in a CD or DVD to boot from the first time you are installing a new OS. To do this, select the Santoku-Linux VM that you just created and click the “Settings” button at the top of the screen. Select the “Storage” option on the left of the Settings screen, and then click the cd icon next to the “IDE Controller” as shown below.</p>
+<p><a href="../../santoku-linux/installing-santoku-in-a-virtual-machine/attachment/settings.html" rel="attachment wp-att-674"><img class="alignnone size-full wp-image-674" title="Settings" src="../../wp-content/uploads/Settings.png" alt="" width="550"/></a></p>
+<p>A warning will pop up asking you to choose a virtual DVD. Select “Choose disk” and navigate to your recently downloaded Santoku .iso file (in this case, it&#8217;s in the home user&#8217;s /Downloads/Santoku file). Click “Open”, then “OK”.</p>
+<p><a href="../../santoku-linux/installing-santoku-in-a-virtual-machine/attachment/screenshot-at-2012-08-28-155644.html" rel="attachment wp-att-755"><img class="alignnone size-full wp-image-755" title="Choose a Virtual DVD" src="../../wp-content/uploads/Screenshot-at-2012-08-28-155644.png" alt="" width="550"/></a></p>
+<p style="text-align: left;"><a href="installing-santoku-in-a-virtual-machine.html#top">Top</a></p>
+<h4><a name="install-santoku"></a>Install Santoku</h4>
+<p>You can now click “Start” on the main VirtualBox screen to load the VM. Select to either boot from the live DVD or install. If you have created this in a Virtual Machine, choose “install – start the installer directly”.</p>
+<p><a href="../../santoku-linux/installing-santoku-in-a-virtual-machine/attachment/screenshot-at-2012-08-28-155720.html" rel="attachment wp-att-757"><img title="Install" src="../../wp-content/uploads/Screenshot-at-2012-08-28-155720.png" alt="" width="550"/></a></p>
+<p>Choose your language, time zone, and clock settings, then select “Erase disk and install Santoku” on the &#8216;Installation type&#8217; screen. WARNING: If you choose this option and you are not installing Santoku in a Virtual Machine (i.e., you are not using VirtualBox and instead are installing it directly to your hard drive) this will ERASE YOUR HARD DRIVE. You have been warned. From there, add your user name and password and click &#8216;Install&#8217;.</p>
+<p><a href="../../santoku-linux/installing-santoku-in-a-virtual-machine/attachment/screenshot-at-2012-08-28-155818.html" rel="attachment wp-att-758"><img class="alignnone size-full wp-image-758" title="Erase HD Warning Screen" src="../../wp-content/uploads/Screenshot-at-2012-08-28-155818.png" alt="" width="550"/></a></p>
+<p>After the installation is complete, reboot when prompted, then login using the username and password you created during the install process.</p>
+<h4><a name="install-guest-additions"></a>Install guest additions (Virtual Box):</h4>
+<p>Once logged in, initiate the process to install VirtualBox Guest Additions by going to Devices -&gt; Install Guest Additions. This is a one-time setup, and will allow for improved graphic performance, shared folders, and other features within the VM. You will see the Guest Additions icon appear on the Desktop. Right click it and select “Mount Volume”.</p>
+<p>Next, open a Terminal window located under Applications &gt; Accessories &gt; Terminal (we have also created a shortcut to the Terminal window on the top status bar of the VM). Once open, navigate to the VBOSADDITIONS directory which was mounted in the previous step, and execute the install script by running the following commands (do NOT type the “$”. This is intended to signify the beginning of a command prompt. Also, in this case it is VBOXADDITIONS_4.1.8_75467. The numbers following VBOXADDITIONS may vary):</p>
+<p>$ cd /media/VBOXADDITIONS_4.1.8_75467/<br/>
+$ sudo sh VBoxLinuxAdditions.run</p>
+<p>You may need to enter the administrator password, which you set up during install. Finally, the VM may need to be restarted for the changes to take effect.</p>
+<p><a href="../../santoku-linux/installing-santoku-in-a-virtual-machine/attachment/screenshot-at-2012-08-28-161221.html" rel="attachment wp-att-760"><img title="Install Vbox Guest Additions" src="../../wp-content/uploads/Screenshot-at-2012-08-28-161221.png" alt="" width="550"/></a></p>
+<p>Update your local package index with the latest changes made in repositories by typing the following: sudo apt-get update. After that completes, upgrade the packages by typing the following: sudo apt-get upgrade. These might ask if you want to continue (giving a Y/n option), type &#8220;Y&#8221; and hit enter.</p>
+<h4><a name="getting-started"></a>Getting started with Santoku:</h4>
+<p>Now that your VM is up and running, you&#8217;ll want to connect a mobile device to it and start having some fun. To connect a mobile device to your VM, go to the VirtualBox menu, click Devices &#8211;&gt; USB Devices &#8211;&gt; &lt;Your Device&gt;. Make sure the checkmark is checked next to your device and it will be passed through to your Santoku VM.</p>
+<p><a href="installing-santoku-in-a-virtual-machine/attachment/virtualbox_menu.html" rel="attachment wp-att-1375"><img class="alignnone size-full wp-image-1375" title="VirtualBox_Menu" src="../../wp-content/uploads/VirtualBox_Menu.png" alt="Connect USB in VirtualBox" width="550"/></a></p>
+<p>Now that you&#8217;re up and running, head over to the <a title="HOWTO's" href="../../howtos.html" target="_blank">Santoku HOW</a><a title="HOWTO's" href="../../howtos.html" target="_blank">TO&#8217;s</a> section to read up on your favourite tools and learn about some new ones.</p>
+<p>Also, head over to <a title="The Forums" href="../../forums.html" target="_blank">the Forums</a>, check out the threads and, if you feel so inspired, say hi. There are alot of categories and a variety of interests in <a title="The Community" href="../../community.html" target="_blank">the Community</a>, so check out what interests you and get active.</p>
+<p>Enjoy. Thank you for being a part of the Santoku Community.</p>
+<p style="text-align: left;"><a href="installing-santoku-in-a-virtual-machine.html#top">Top</a></p>
+
+      </div> 
+    </div> 
+  </div> 
+
+</div> 
